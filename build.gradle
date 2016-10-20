@@ -14,7 +14,14 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        //jcenter()
+        maven {
+//            credentials {
+//                username maven_repo_id
+//                password maven_repo_pwd
+//            }
+            url "http://walton.poisondog.com:8081/nexus/content/groups/public/"
+        }
     }
 }
 

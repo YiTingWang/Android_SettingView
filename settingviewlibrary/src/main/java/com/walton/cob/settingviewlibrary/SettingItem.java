@@ -1,9 +1,9 @@
-package com.walton.cob.android_settingview;
+package com.walton.cob.settingviewlibrary;
 
 import android.view.View;
 
 /**
- * Created by 27758 on 2016/10/19.
+ * Created by 27758 on 2016/10/20.
  */
 public class SettingItem {
 
@@ -71,6 +71,6 @@ public class SettingItem {
     }
 
     public void setClickListener(View.OnClickListener listener){
-        mListener=listener;
+        mListener = listener;
     }
 }

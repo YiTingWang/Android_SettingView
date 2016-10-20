@@ -1,15 +1,16 @@
-package com.walton.cob.android_settingview;
+package com.walton.cob.settingviewlibrary;
 
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 /**
- * Created by 27758 on 2016/10/19.
+ * Created by 27758 on 2016/10/20.
  */
 public class RadioListener implements View.OnClickListener {
 
-    private MainActivity mMainActivity;
+    private AppCompatActivity mMainActivity;
 
-    public RadioListener(MainActivity activity) {
+    public RadioListener(AppCompatActivity activity) {
         mMainActivity = activity;
     }
     public void onClick(View v) {

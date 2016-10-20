@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Android_SettingView.iml" filepath="$PROJECT_DIR$/Android_SettingView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/settingviewlibrary/settingviewlibrary.iml" filepath="$PROJECT_DIR$/settingviewlibrary/settingviewlibrary.iml" />
     </modules>
   </component>
 </project>

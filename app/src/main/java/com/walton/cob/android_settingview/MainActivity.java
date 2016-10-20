@@ -1,11 +1,18 @@
 package com.walton.cob.android_settingview;
 
+import com.walton.cob.settingviewlibrary.SettingItem;
+import com.walton.cob.settingviewlibrary.CheckListener;
+import com.walton.cob.settingviewlibrary.RadioListener;
+import com.walton.cob.settingviewlibrary.ConfirmListener;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ServiceConfigurationError;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         ListView lvSetting = (ListView) findViewById(R.id.lvSetting);
         List<SettingItem> list = new ArrayList<>();
@@ -59,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         ConfirmListener confirmListener1 = new ConfirmListener(MainActivity.this,"Sign out","Ready to logout?");
         settingItem10.setClickListener(confirmListener1);
         list.add(settingItem10);
+
 
 
         lvSetting.setAdapter(settingAdapter);

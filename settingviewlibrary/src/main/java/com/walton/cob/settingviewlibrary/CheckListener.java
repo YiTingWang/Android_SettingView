@@ -1,16 +1,17 @@
-package com.walton.cob.android_settingview;
+package com.walton.cob.settingviewlibrary;
 
 import android.view.View;
+import android.widget.BaseAdapter;
 
 /**
- * Created by 27758 on 2016/10/19.
+ * Created by 27758 on 2016/10/20.
  */
 public class CheckListener implements View.OnClickListener {
 
     private SettingItem mSettingItem;
-    private SettingAdapter mSettingAdapter;
+    private BaseAdapter mSettingAdapter;
 
-    public CheckListener(SettingItem settingItem,SettingAdapter settingAdapter){
+    public CheckListener(SettingItem settingItem,BaseAdapter settingAdapter){
         mSettingItem = settingItem;
         mSettingAdapter = settingAdapter;
 

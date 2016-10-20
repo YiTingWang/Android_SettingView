@@ -1,5 +1,7 @@
 package com.walton.cob.android_settingview;
 
+import com.walton.cob.settingviewlibrary.SettingItem;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.List;
+
 
 /**
  * Created by 27758 on 2016/10/19.

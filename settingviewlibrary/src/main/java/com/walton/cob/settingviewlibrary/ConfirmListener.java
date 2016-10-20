@@ -1,19 +1,19 @@
-package com.walton.cob.android_settingview;
+package com.walton.cob.settingviewlibrary;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
 /**
- * Created by 27758 on 2016/10/19.
+ * Created by 27758 on 2016/10/20.
  */
 public class ConfirmListener implements View.OnClickListener {
 
-    private MainActivity mMainActivity;
+    private AppCompatActivity mMainActivity;
     private String mTitle;
     private String mMessage;
 
-    public ConfirmListener(MainActivity activity,String title,String message) {
+    public ConfirmListener(AppCompatActivity activity,String title,String message) {
         mMainActivity = activity;
         mTitle = title;
         mMessage = message;
@@ -40,3 +40,4 @@ public class ConfirmListener implements View.OnClickListener {
         dialog.show();
     }
 }
+
