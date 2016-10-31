@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SettingViewLibrary</string>
+    <string name="tvText2">Only Wi-Fi Upload</string>
 </resources>

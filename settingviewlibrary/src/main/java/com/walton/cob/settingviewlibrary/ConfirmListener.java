@@ -23,7 +23,7 @@ public class ConfirmListener implements View.OnClickListener {
         AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity);
         builder.setTitle(mTitle);
         builder.setMessage(mMessage);
-        //builder.setCancelable(false);   //不能使用手機返回鑑離開AlertDialog
+        //builder.setCancelable(false);   //不能使用手機返回鑑離開AlertDialogtime
         builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
