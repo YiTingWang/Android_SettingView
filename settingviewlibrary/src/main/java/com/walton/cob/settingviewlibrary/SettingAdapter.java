@@ -1,5 +1,6 @@
 package com.walton.cob.settingviewlibrary;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,13 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-
 import java.util.List;
 
 /**
  * Created by 27758 on 2016/10/20.
  */
 public class SettingAdapter extends BaseAdapter{
+
     private List<SettingItem> mList;
     private Context mContext;
 
@@ -35,7 +36,7 @@ public class SettingAdapter extends BaseAdapter{
         TextView textViews = (TextView) row.findViewById(R.id.tvTexts);
         CheckBox checkBoxs = (CheckBox) row.findViewById(R.id.checkboxs);
         row.setOnClickListener(settingItem.getClickListener());
-
+        checkBox.setOnClickListener(settingItem.getClickListener());
 
 
         settingItem.getShowTextVisibility();
@@ -55,13 +56,13 @@ public class SettingAdapter extends BaseAdapter{
 
         textViews.setVisibility(View.GONE);
         checkBoxs.setVisibility(View.GONE);
-        if(settingItem.getCheck()){
-            textViews.setVisibility(View.VISIBLE);
-            checkBoxs.setVisibility(View.VISIBLE);
-        }else{
-            textViews.setVisibility(View.GONE);
-            checkBoxs.setVisibility(View.GONE);
-        }
+//        if(settingItem.getCheck()){
+//            textViews.setVisibility(View.VISIBLE);
+//            checkBoxs.setVisibility(View.VISIBLE);
+//        }else{
+//            textViews.setVisibility(View.GONE);
+//            checkBoxs.setVisibility(View.GONE);
+//        }
 
 
         checkBox.setChecked(settingItem.getCheck());
@@ -87,4 +88,3 @@ public class SettingAdapter extends BaseAdapter{
     }
 
 }
-

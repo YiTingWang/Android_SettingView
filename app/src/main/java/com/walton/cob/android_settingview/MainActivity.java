@@ -4,19 +4,24 @@ import com.walton.cob.settingviewlibrary.SettingItem;
 import com.walton.cob.settingviewlibrary.SettingAdapter;
 import com.walton.cob.settingviewlibrary.CheckListener;
 import com.walton.cob.settingviewlibrary.RadioListener;
+import com.walton.cob.settingviewlibrary.MultiChoiceListener;
 import com.walton.cob.settingviewlibrary.ConfirmListener;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.AndroidCharacter;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceConfigurationError;
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -52,13 +57,16 @@ public class MainActivity extends AppCompatActivity {
         settingItem5.setClickListener(checkListener);
         list.add(settingItem5);
 
+        SettingItem settingItemGone = new SettingItem();
+        list.add(settingItemGone);
+
         SettingItem settingItem6 = new SettingItem("Used Disk Space\n");
-        RadioListener radioListener1 = new RadioListener(MainActivity.this,1);
+        MultiChoiceListener radioListener1 = new MultiChoiceListener(MainActivity.this);
         settingItem6.setClickListener(radioListener1);
         list.add(settingItem6);
 
         SettingItem settingItem7 = new SettingItem("Keep Day","Default keep days");
-        RadioListener radioListener = new RadioListener(MainActivity.this,0);
+        RadioListener radioListener = new RadioListener(MainActivity.this);
         settingItem7.setClickListener(radioListener);
         list.add(settingItem7);
 
@@ -77,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         lvSetting.setAdapter(settingAdapter);
+
+
 
     }
 

@@ -41,8 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/checkboxs"
-        android:layout_alignBaseline="@+id/tvText2"
-        android:layout_alignBottom="@+id/tvText2"
+        android:layout_below="@+id/tvText"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 

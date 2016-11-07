@@ -1,7 +1,6 @@
 package com.walton.cob.settingviewlibrary;
 
 import android.view.View;
-
 /**
  * Created by 27758 on 2016/10/20.
  */
@@ -10,20 +9,27 @@ public class SettingItem {
     private String mTitle;
     private String mText;
     private boolean mCheck;
+    private boolean mShowTitle;
     private boolean mShowText;
     private boolean mShowCheck;
     private View.OnClickListener mListener;
 
+    public SettingItem(){
+        mShowTitle = false;
+        mShowText = false;
+        mShowCheck =false;
+        mListener = new NoListener();
+    }
+
     public SettingItem(String title){
-        mTitle = title;
+        this(title,"",false);
         mShowText = false;
         mShowCheck = false;
         mListener = new NoListener();
     }
 
     public SettingItem(String title, String text){
-        mTitle = title;
-        mText = text;
+        this(title,text,false);
         mShowText = true;
         mShowCheck = false;
         mListener = new NoListener();
@@ -56,6 +62,10 @@ public class SettingItem {
 
     public void setCheck(boolean check){
         mCheck = check;
+    }
+
+    public boolean getShowTitleVisibility(){
+        return mShowTitle;
     }
 
     public boolean getShowTextVisibility(){
