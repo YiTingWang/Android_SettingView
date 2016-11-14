@@ -39,30 +39,30 @@ public class SettingAdapter extends BaseAdapter{
         checkBox.setOnClickListener(settingItem.getClickListener());
 
 
-        settingItem.getShowTextVisibility();
-        settingItem.getShowCheckVisibility();
-        textView.setVisibility(View.VISIBLE);
-        if(settingItem.getShowTextVisibility()){
+
+        if(settingItem.getTitleVisibility()){
+            titleView.setVisibility(View.VISIBLE);
+        }else{
+            titleView.setVisibility(View.GONE);
+        }
+        if(settingItem.getTextVisibility()){
             textView.setVisibility(View.VISIBLE);
         }else{
             textView.setVisibility(View.GONE);
         }
-        if(settingItem.getShowCheckVisibility()){
+        if(settingItem.getCheckVisibility()){
             checkBox.setVisibility(View.VISIBLE);
         }else{
             checkBox.setVisibility(View.GONE);
         }
 
 
-        textViews.setVisibility(View.GONE);
-        checkBoxs.setVisibility(View.GONE);
-//        if(settingItem.getCheck()){
-//            textViews.setVisibility(View.VISIBLE);
-//            checkBoxs.setVisibility(View.VISIBLE);
+//        if(settingItem.getTitleVisibility()==false && settingItem.getTextVisibility()==false && settingItem.getCheckVisibility()==false){
+//            row.setVisibility(View.GONE);
 //        }else{
-//            textViews.setVisibility(View.GONE);
-//            checkBoxs.setVisibility(View.GONE);
+//            row.setVisibility(View.VISIBLE);
 //        }
+
 
 
         checkBox.setChecked(settingItem.getCheck());

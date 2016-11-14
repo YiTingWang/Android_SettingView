@@ -17,6 +17,7 @@ public class RadioListener implements View.OnClickListener {
     public void onClick(View v) {
                 RadioDialog radioDialog = new RadioDialog();
                 radioDialog.show(mMainActivity.getFragmentManager(),"radioDialog");
+
                 System.out.println("0");
     }
 
