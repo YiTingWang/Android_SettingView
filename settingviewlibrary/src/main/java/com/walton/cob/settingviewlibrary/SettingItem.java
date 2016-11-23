@@ -50,6 +50,10 @@ public class SettingItem {
         return mText;
     }
 
+    public void setTitle(String title) {
+        mTitle = title;
+    }
+
     public void setText(String text){
         mText=text;
     }

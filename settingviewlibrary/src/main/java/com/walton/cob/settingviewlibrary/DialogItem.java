@@ -9,49 +9,54 @@ import java.util.ArrayList;
  */
 public class DialogItem {
 
-    private String mDialogTitle;
-    private String mDialogText;
-    private boolean mDialogCheck;
-    private View.OnClickListener mListener;
+    private SettingItem mItem;
+    private String mDialogOther;
 
-    public DialogItem(String title, String text) {
-        mDialogTitle = title;
-        mDialogText = text;
-        mDialogCheck = false;
-        mListener = new NoListener();
 
+    public DialogItem(String title, String text, String other) {
+        SettingItem settingItem = new SettingItem(title,text);
+        mItem = settingItem;
+        mDialogOther = other;
     }
 
     public String getDialogTitle() {
-        return mDialogTitle;
+        return mItem.getTitle();
     }
 
     public String getDialogText() {
-        return mDialogText;
+        return mItem.getText();
+    }
+
+    public String getDialogOther() {
+        return mDialogOther;
     }
 
     public void setDialogTitle(String title) {
-        mDialogTitle = title;
+        mItem.setTitle(title);
     }
 
     public void setDialogText(String text) {
-        mDialogText = text;
+        mItem.setText(text);
+    }
+
+    public void setDialogOther(String other) {
+        mDialogOther = other;
     }
 
     public boolean getDialogCheck(){
-        return  mDialogCheck;
+        return  mItem.getCheck();
     }
 
     public void setDialogCheck(boolean check){
-        mDialogCheck = check;
+        mItem.setCheck(check);
     }
 
     public View.OnClickListener getClickListener(){
-        return mListener;
+        return mItem.getClickListener();
     }
 
     private void setClickListener(View.OnClickListener listener){
-        mListener = listener;
+        mItem.setClickListener(listener);
     }
 
 

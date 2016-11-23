@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class DialogAdapter extends BaseAdapter {
 
+    private SettingAdapter mAdapter;
     private List<DialogItem> mDialogList;
     private Context mContext;
 
@@ -35,6 +36,7 @@ public class DialogAdapter extends BaseAdapter {
 
         TextView dialogTitleView = (TextView) dialogView.findViewById(R.id.tvDialogTitle);
         TextView dialogTextView = (TextView) dialogView.findViewById(R.id.tvDialogText);
+        TextView dialogOtherView = (TextView) dialogView.findViewById(R.id.tvDialogOther);
         CheckBox dialogCheckBox = (CheckBox) dialogView.findViewById(R.id.DialogCheckbox);
 
         dialogView.setOnClickListener(dialogItem.getClickListener());
@@ -43,6 +45,8 @@ public class DialogAdapter extends BaseAdapter {
 
         dialogTitleView.setText(dialogItem.getDialogTitle());
         dialogTextView.setText(dialogItem.getDialogText());
+        dialogOtherView.setText(dialogItem.getDialogOther());
+
         dialogCheckBox.setChecked(dialogItem.getDialogCheck());
 
         return dialogView;

@@ -20,6 +20,7 @@ import java.util.List;
  */
 public class MultiChoiceDialog extends DialogFragment{
 
+    @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -28,13 +29,13 @@ public class MultiChoiceDialog extends DialogFragment{
         List<DialogItem> list = new ArrayList<>();
         final DialogAdapter dialogAdapter = new DialogAdapter(list,getActivity());
 
-        final DialogItem dialogItem = new DialogItem("Title1","Text1");
+        final DialogItem dialogItem = new DialogItem("Title1","Text1","X1");
         list.add(dialogItem);
 
-        DialogItem dialogItem1 = new DialogItem("Title2","Text2");
+        DialogItem dialogItem1 = new DialogItem("Title2","Text2","X2");
         list.add(dialogItem1);
 
-        DialogItem dialogItem2 = new DialogItem("Title3","Text3");
+        DialogItem dialogItem2 = new DialogItem("Title3","Text3","X3");
         list.add(dialogItem2);
 
 //        WindowManager.LayoutParams a = this.getDialog().getWindow().getAttributes();

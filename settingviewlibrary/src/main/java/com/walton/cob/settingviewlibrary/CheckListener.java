@@ -10,6 +10,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import poisondog.core.Mission;
+import poisondog.core.NoMission;
 
 
 /**
@@ -19,43 +20,36 @@ public class CheckListener implements View.OnClickListener {
 
     private SettingItem mSettingItem;
     private BaseAdapter mSettingAdapter;
-    private SettingItem mSettingItemHidden;
+    private Mission<Void> mMission;
 
 
-    public CheckListener(SettingItem settingItemHidden,SettingItem settingItem, BaseAdapter settingAdapter){
+    public CheckListener(SettingItem settingItem, BaseAdapter settingAdapter){
         mSettingItem = settingItem;
         mSettingAdapter = settingAdapter;
-        mSettingItemHidden = settingItemHidden;
-        setStatus();
+        mMission = new NoMission<Void>();
+        //setStatus();
+    }
+
+    public void setMission(Mission<Void> mission) {
+        mMission = mission;
     }
 
     public void onClick(View v){
         mSettingItem.setCheck(!mSettingItem.getCheck());
 
-        setStatus();
-        
+        System.out.println(v.getClass());
+        //setStatus();
+        //Mission<Void> mission = new ChangeStatus(mSettingItem,mSettingItemHidden);
+        try{
+            mMission.execute(null);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
 
         System.out.println(mSettingItem.getCheck());
         mSettingAdapter.notifyDataSetChanged();
-    }
-
-    private void setStatus(){
-        if(mSettingItem.getCheck()){
-            mSettingItem.setText(mSettingItem.getText().substring(0,16)+"Open");
-            mSettingItemHidden.setTitleVisibility(true);
-            mSettingItemHidden.setTextVisibility(false);
-            mSettingItemHidden.setCheckVisibility(true);
-
-            System.out.println(mSettingItem.getText());
-        }else{
-            mSettingItem.setText(mSettingItem.getText().substring(0,16)+"Close");
-            mSettingItemHidden.setTitleVisibility(false);
-            mSettingItemHidden.setTextVisibility(false);
-            mSettingItemHidden.setCheckVisibility(false);
-
-            System.out.println(mSettingItem.getText());
-        }
     }
 
 

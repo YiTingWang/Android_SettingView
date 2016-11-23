@@ -13,24 +13,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvDialogTitle"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/DialogCheckbox"
+        android:layout_toEndOf="@+id/DialogCheckbox" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvDialogText"
+        android:layout_alignWithParentIfMissing="false"
         android:layout_below="@+id/tvDialogTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toRightOf="@+id/DialogCheckbox"
+        android:layout_toEndOf="@+id/DialogCheckbox" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvDialogOther"
+        android:singleLine="false"
+        android:layout_marginLeft="57dp"
+        android:layout_marginStart="57dp"
+        android:layout_below="@+id/tvDialogTitle"
+        android:layout_toRightOf="@+id/tvDialogTitle"
+        android:layout_toEndOf="@+id/tvDialogTitle" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/DialogCheckbox"
-        android:layout_alignParentLeft="false"
-        android:layout_marginLeft="118dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:layout_alignBottom="@+id/tvTitle"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
