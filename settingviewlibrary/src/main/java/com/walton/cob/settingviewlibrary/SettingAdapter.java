@@ -37,6 +37,7 @@ public class SettingAdapter extends BaseAdapter{
         CheckBox checkBoxs = (CheckBox) row.findViewById(R.id.checkboxs);
         row.setOnClickListener(settingItem.getClickListener());
         checkBox.setOnClickListener(settingItem.getClickListener());
+        checkBoxs.setOnClickListener(settingItem.getClickListener());
 
 
 

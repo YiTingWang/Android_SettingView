@@ -28,6 +28,9 @@ public class CheckHiddenListener implements View.OnClickListener  {
     public void onClick(View v){
         mSettingItem.setCheck(!mSettingItem.getCheck());
 
+        mMap.put("BooleanHidden",Boolean.toString(mSettingItem.getCheck()));
+        mSaveSharedPreferences.execute(mMap);
+
         System.out.println(mSettingItem.getCheck());
         mSettingAdapter.notifyDataSetChanged();
     }

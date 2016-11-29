@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2016 Adam Huang <poisondog@gmail.com>
+ * Copyright (C) 2016 Yi-Ting Wang <ig95233259@gmail.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         input.put("keyDate","2016-09-20 " + "09:11:20");
         input.put("keyStatus","Current Status:  ");
         input.put("Boolean",Boolean.toString(false));
+        input.put("BooleanHidden",Boolean.toString(false));
         input.put("keyUsed","Used Disk Space\n");
         input.put("keyDefault","Default keep days");
         input.put("keyLegal","Legal and Privacy\n");
@@ -124,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem4);
 
 
-        SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",false,false,false,false);
+        SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(map.get("BooleanHidden")),false,false,false);
         boolean b = Boolean.parseBoolean(map.get("Boolean"));
         SettingItem settingItem5 = new SettingItem("Camera",map.get("keyStatus"),b);
         System.out.println("map : " + map.get("Boolean"));
