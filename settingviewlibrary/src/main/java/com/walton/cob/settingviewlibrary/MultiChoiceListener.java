@@ -18,8 +18,6 @@ public class MultiChoiceListener implements View.OnClickListener {
     public void onClick(View v) {
         MultiChoiceDialog Dialog = new MultiChoiceDialog();
         Dialog.show(mMainActivity.getFragmentManager(),"alertDialog");
-
-        System.out.println("1");
     }
 
 }

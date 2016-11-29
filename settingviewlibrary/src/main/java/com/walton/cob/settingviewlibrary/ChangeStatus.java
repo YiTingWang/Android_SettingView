@@ -1,5 +1,8 @@
 package com.walton.cob.settingviewlibrary;
 
+import java.util.Map;
+
+import poisondog.android.preference.SaveSharedPreferences;
 import poisondog.core.Mission;
 
 /**
@@ -8,10 +11,14 @@ import poisondog.core.Mission;
 public class ChangeStatus implements Mission<Void> {
     private SettingItem mSettingItem;
     private SettingItem mSettingItemHidden;
+    private SaveSharedPreferences mSaveSharedPreferences;
+    private Map<String, String> mMap;
 
-    public ChangeStatus(SettingItem item, SettingItem hidden) {
+    public ChangeStatus(SettingItem item, SettingItem hidden,SaveSharedPreferences save,Map<String, String> map) {
         mSettingItem = item;
         mSettingItemHidden = hidden;
+        mSaveSharedPreferences = save;
+        mMap = map;
     }
 
     @Override
@@ -22,6 +29,9 @@ public class ChangeStatus implements Mission<Void> {
             mSettingItemHidden.setTextVisibility(false);
             mSettingItemHidden.setCheckVisibility(true);
 
+            mMap.put("keyStatus",mSettingItem.getText());
+            mSaveSharedPreferences.execute(mMap);
+
             System.out.println(mSettingItem.getText());
         }else{
             mSettingItem.setText(mSettingItem.getText().substring(0,16)+"Close");
@@ -29,9 +39,11 @@ public class ChangeStatus implements Mission<Void> {
             mSettingItemHidden.setTextVisibility(false);
             mSettingItemHidden.setCheckVisibility(false);
 
+            mMap.put("keyStatus",mSettingItem.getText());
+            mSaveSharedPreferences.execute(mMap);
+
             System.out.println(mSettingItem.getText());
         }
         return null;
     }
 }
-

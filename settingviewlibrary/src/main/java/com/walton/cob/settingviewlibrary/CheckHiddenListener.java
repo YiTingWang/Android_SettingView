@@ -3,17 +3,25 @@ package com.walton.cob.settingviewlibrary;
 import android.view.View;
 import android.widget.BaseAdapter;
 
+import java.util.Map;
+
+import poisondog.android.preference.SaveSharedPreferences;
+
 /**
  * Created by 27758 on 2016/11/7.
  */
-public class ChecksListener implements View.OnClickListener  {
+public class CheckHiddenListener implements View.OnClickListener  {
 
     private SettingItem mSettingItem;
     private BaseAdapter mSettingAdapter;
+    private SaveSharedPreferences mSaveSharedPreferences;
+    private Map<String, String> mMap;
 
-    public ChecksListener(SettingItem settingItem, BaseAdapter settingAdapter){
+    public CheckHiddenListener(SettingItem settingItem, BaseAdapter settingAdapter, SaveSharedPreferences save, Map<String, String> map){
         mSettingItem = settingItem;
         mSettingAdapter = settingAdapter;
+        mSaveSharedPreferences = save;
+        mMap = map;
 
     }
 

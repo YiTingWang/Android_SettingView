@@ -38,39 +38,13 @@ public class MultiChoiceDialog extends DialogFragment{
         DialogItem dialogItem2 = new DialogItem("Title3","Text3","X3");
         list.add(dialogItem2);
 
+
 //        WindowManager.LayoutParams a = this.getDialog().getWindow().getAttributes();
 //        a.alpha = 0.3f;
 //        this.getDialog().getWindow().setAttributes(a);
 
 
 
-
-//        String[] items = new String[]{
-//                "Item1", "Item2", "Item3", "Item4", "Item5"
-//        };
-//
-//        final boolean[] checkedItems = new boolean[]{
-//                false, false, false, false, false
-//        };
-//
-//        final List<String> itemList = Arrays.asList(items);
-//
-//
-//        builder.setMultiChoiceItems(items, checkedItems, new DialogInterface.OnMultiChoiceClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-//
-//                // Update the current focused item's checked status
-//                checkedItems[which] = isChecked;
-//
-//                // Get the current focused item
-//                String currentItem = itemList.get(which);
-//
-//                // Notify the current action
-////                Toast.makeText(getApplicationContext(),
-////                        currentItem + " " + isChecked, Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
 
         builder.setAdapter(dialogAdapter, new DialogInterface.OnClickListener(){

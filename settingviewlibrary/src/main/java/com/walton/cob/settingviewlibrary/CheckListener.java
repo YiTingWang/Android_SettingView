@@ -9,6 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.util.Map;
+
+import poisondog.android.preference.SaveSharedPreferences;
 import poisondog.core.Mission;
 import poisondog.core.NoMission;
 
@@ -21,13 +24,17 @@ public class CheckListener implements View.OnClickListener {
     private SettingItem mSettingItem;
     private BaseAdapter mSettingAdapter;
     private Mission<Void> mMission;
+    private SaveSharedPreferences mSaveSharedPreferences;
+    private Map<String, String> mMap;
 
 
-    public CheckListener(SettingItem settingItem, BaseAdapter settingAdapter){
+    public CheckListener(SettingItem settingItem, BaseAdapter settingAdapter, SaveSharedPreferences save, Map<String, String> map){
         mSettingItem = settingItem;
         mSettingAdapter = settingAdapter;
         mMission = new NoMission<Void>();
         //setStatus();
+        mSaveSharedPreferences = save;
+        mMap = map;
     }
 
     public void setMission(Mission<Void> mission) {
@@ -37,7 +44,10 @@ public class CheckListener implements View.OnClickListener {
     public void onClick(View v){
         mSettingItem.setCheck(!mSettingItem.getCheck());
 
-        System.out.println(v.getClass());
+        mMap.put("Boolean",Boolean.toString(mSettingItem.getCheck()));
+        mSaveSharedPreferences.execute(mMap);
+
+        //System.out.println(v.getClass());
         //setStatus();
         //Mission<Void> mission = new ChangeStatus(mSettingItem,mSettingItemHidden);
         try{
