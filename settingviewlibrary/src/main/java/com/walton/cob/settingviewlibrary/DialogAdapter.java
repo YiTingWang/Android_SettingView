@@ -11,9 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by 27758 on 2016/11/10.
- */
+
 public class DialogAdapter extends BaseAdapter {
 
     private SettingAdapter mAdapter;

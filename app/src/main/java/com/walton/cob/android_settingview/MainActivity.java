@@ -50,15 +50,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-//        AndroidLogger.setDefaultLogLevel(LogLevel.TRACE);
-//        LoadSharedPreferences loadSharedPreferences = new LoadSharedPreferences(this,"myPreference");
-//        Map<String,String> map = loadSharedPreferences.execute("");
-//        for(String key:map.keySet()){
-//
-//            System.out.println(key+":"+map.get(key));
-//        }
-
-
 
         ListView lvSetting = (ListView) findViewById(R.id.lvSetting);
         List<SettingItem> list = new ArrayList<>();
@@ -105,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        SettingItem settingItem = new SettingItem("Account");
+        SettingItem settingItem = new SettingItem("ACCOUNT",25);
         list.add(settingItem);
 
 
@@ -124,15 +115,18 @@ public class MainActivity extends AppCompatActivity {
         SettingItem settingItem4 = new SettingItem("Date",map.get("keyDate"));
         list.add(settingItem4);
 
+        SettingItem settingItem5 = new SettingItem("SETTING",25);
+        list.add(settingItem5);
 
-        SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(map.get("BooleanHidden")),false,false,false);
+
+        SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(map.get("BooleanHidden")),false,false,false,15);
         boolean b = Boolean.parseBoolean(map.get("Boolean"));
-        SettingItem settingItem5 = new SettingItem("Camera",map.get("keyStatus"),b);
+        SettingItem settingItem6 = new SettingItem("Camera",map.get("keyStatus"),b);
         System.out.println("map : " + map.get("Boolean"));
         System.out.println("checkbox : " + b);
-        CheckListener checkListener = new CheckListener(settingItem5,settingAdapter,saveSharedPreferences,map);
-        settingItem5.setClickListener(checkListener);
-        Mission<Void> mission = new ChangeStatus(settingItem5,settingItemHidden,saveSharedPreferences,map);
+        CheckListener checkListener = new CheckListener(settingItem6,settingAdapter,saveSharedPreferences,map);
+        settingItem6.setClickListener(checkListener);
+        Mission<Void> mission = new ChangeStatus(settingItem6,settingItemHidden,saveSharedPreferences,map);
         try{
             mission.execute(null);
         }catch (Exception e) {
@@ -141,48 +135,48 @@ public class MainActivity extends AppCompatActivity {
         checkListener.setMission(mission);
         CheckHiddenListener checksListener = new CheckHiddenListener(settingItemHidden,settingAdapter,saveSharedPreferences,map);
         settingItemHidden.setClickListener(checksListener);
-        list.add(settingItem5);
+        list.add(settingItem6);
         list.add(settingItemHidden);
 
 
-        SettingItem settingItem6 = new SettingItem(map.get("keyUsed"));
-        list.add(settingItem6);
-
-
-        SettingItem settingItem7 = new SettingItem("Keep Day",map.get("keyDefault"));
-        RadioListener radioListener = new RadioListener(MainActivity.this);
-        settingItem7.setClickListener(radioListener);
+        SettingItem settingItem7 = new SettingItem(map.get("keyUsed"),15);
         list.add(settingItem7);
 
 
-        SettingItem settingItem8 = new SettingItem(map.get("keyLegal"));
+        SettingItem settingItem8 = new SettingItem("Keep Day",map.get("keyDefault"));
+        RadioListener radioListener = new RadioListener(MainActivity.this);
+        settingItem8.setClickListener(radioListener);
         list.add(settingItem8);
 
 
-        SettingItem settingItem9 = new SettingItem(map.get("keyInvite"));
-        MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
-        settingItem9.setClickListener(multiChoiceListener);
+        SettingItem settingItem9 = new SettingItem(map.get("keyLegal"),15);
         list.add(settingItem9);
 
 
-        SettingItem settingItem10 = new SettingItem("Erase",map.get("keyEraseAll"));
+        SettingItem settingItem10 = new SettingItem(map.get("keyInvite"),15);
+        MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
+        settingItem10.setClickListener(multiChoiceListener);
+        list.add(settingItem10);
+
+
+        SettingItem settingItem11 = new SettingItem("Erase",map.get("keyEraseAll"));
         ConfirmListener confirmListener = new ConfirmListener(MainActivity.this,"Erase",map.get("keyEraseAll"));
         YesClickListener yesClickListener = new YesClickListener();
         confirmListener.setYesListener(yesClickListener);
         NoClickListener noClickListener = new NoClickListener();
         confirmListener.setNoListener(noClickListener);
-        settingItem10.setClickListener(confirmListener);
-        list.add(settingItem10);
+        settingItem11.setClickListener(confirmListener);
+        list.add(settingItem11);
 
 
-        SettingItem settingItem11 = new SettingItem("Sing out\n");
+        SettingItem settingItem12 = new SettingItem("Sing out\n",15);
         ConfirmListener confirmListener1 = new ConfirmListener(MainActivity.this,"Sing out\n",map.get("keyLogout"));
         YesClickListener yesClickListener1 = new YesClickListener();
         confirmListener1.setYesListener(yesClickListener1);
         NoClickListener noClickListener1 = new NoClickListener();
         confirmListener1.setNoListener(noClickListener1);
-        settingItem11.setClickListener(confirmListener1);
-        list.add(settingItem11);
+        settingItem12.setClickListener(confirmListener1);
+        list.add(settingItem12);
 
 
 

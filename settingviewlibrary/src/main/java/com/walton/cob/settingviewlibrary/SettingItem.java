@@ -3,9 +3,7 @@ package com.walton.cob.settingviewlibrary;
 import android.view.View;
 import android.view.textservice.TextInfo;
 
-/**
- * Created by 27758 on 2016/10/20.
- */
+
 public class SettingItem {
 
     private String mTitle;
@@ -15,24 +13,25 @@ public class SettingItem {
     private boolean mShowText;
     private boolean mShowCheck;
     private View.OnClickListener mListener;
+    private float mSize;
 
     public SettingItem(){
-        this("","",false,false,false,false);
+        this("","",false,false,false,false,15);
     }
 
-    public SettingItem(String title){
-        this(title,"",false,true,false,false);
+    public SettingItem(String title, float size){
+        this(title,"",false,true,false,false,size);
     }
 
     public SettingItem(String title, String text){
-        this(title,text,false,true,true,false);
+        this(title,text,false,true,true,false,15);
     }
 
     public SettingItem(String title, String text, boolean check){
-        this(title, text, check, true, true, true);
+        this(title, text, check, true, true, true,15);
     }
 
-    public SettingItem(String title, String text, boolean check, boolean showTitle, boolean showText, boolean showCheck){
+    public SettingItem(String title, String text, boolean check, boolean showTitle, boolean showText, boolean showCheck, float size){
         mTitle = title;
         mText = text;
         mCheck = check;
@@ -40,6 +39,7 @@ public class SettingItem {
         mShowText = showText;
         mShowCheck = showCheck;
         mListener = new NoListener();
+        mSize = size;
     }
 
     public String getTitle(){
@@ -55,7 +55,11 @@ public class SettingItem {
     }
 
     public void setText(String text){
-        mText=text;
+        mText = text;
+    }
+
+    public float getSize(){
+        return mSize;
     }
 
     public boolean getCheck(){

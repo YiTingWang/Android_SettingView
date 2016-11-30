@@ -4,9 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 
-/**
- * Created by 27758 on 2016/11/7.
- */
+
 public class MultiChoiceListener implements View.OnClickListener {
 
     private AppCompatActivity mMainActivity;

@@ -10,9 +10,7 @@ import java.util.Map;
 
 import poisondog.android.preference.SaveSharedPreferences;
 
-/**
- * Created by 27758 on 2016/10/20.
- */
+
 public class RadioDialog extends DialogFragment {
 
     final String[] items = new String[] {"5 Days","10 Days","20 Days","30 Days"};
@@ -28,6 +26,7 @@ public class RadioDialog extends DialogFragment {
                 switch (which){
                     case 0:
                         selection = (String) items[which];
+
                         dialog.dismiss();
                         break;
                     case 1:

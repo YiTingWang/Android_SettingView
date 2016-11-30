@@ -2,6 +2,8 @@ package com.walton.cob.settingviewlibrary;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +13,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by 27758 on 2016/10/20.
- */
+
 public class SettingAdapter extends BaseAdapter{
 
     private List<SettingItem> mList;
@@ -69,6 +69,9 @@ public class SettingAdapter extends BaseAdapter{
         checkBox.setChecked(settingItem.getCheck());
 
         titleView.setText(settingItem.getTitle());
+        titleView.setTextSize(settingItem.getSize());
+        //titleView.setTypeface(Typeface.DEFAULT,Typeface.BOLD);
+        //titleView.setTextColor(Color.RED);
         textView.setText(settingItem.getText());
 
         return row;

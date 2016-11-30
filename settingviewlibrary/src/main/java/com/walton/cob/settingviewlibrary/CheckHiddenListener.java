@@ -7,9 +7,7 @@ import java.util.Map;
 
 import poisondog.android.preference.SaveSharedPreferences;
 
-/**
- * Created by 27758 on 2016/11/7.
- */
+
 public class CheckHiddenListener implements View.OnClickListener  {
 
     private SettingItem mSettingItem;

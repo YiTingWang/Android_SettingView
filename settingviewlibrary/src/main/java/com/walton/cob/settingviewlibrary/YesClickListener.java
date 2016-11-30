@@ -4,9 +4,7 @@ import android.content.DialogInterface;
 
 import java.util.Map;
 
-/**
- * Created by 27758 on 2016/11/21.
- */
+
 public class YesClickListener implements DialogInterface.OnClickListener{
 
     public YesClickListener(){

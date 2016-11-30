@@ -7,9 +7,7 @@ import java.util.Map;
 
 import poisondog.android.preference.SaveSharedPreferences;
 
-/**
- * Created by 27758 on 2016/10/20.
- */
+
 public class RadioListener implements View.OnClickListener {
 
     private AppCompatActivity mMainActivity;

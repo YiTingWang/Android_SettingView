@@ -5,9 +5,7 @@ import java.util.Map;
 import poisondog.android.preference.SaveSharedPreferences;
 import poisondog.core.Mission;
 
-/**
- * Created by 27758 on 2016/11/14.
- */
+
 public class ChangeStatus implements Mission<Void> {
     private SettingItem mSettingItem;
     private SettingItem mSettingItemHidden;

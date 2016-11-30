@@ -4,9 +4,7 @@ import android.view.View;
 
 import java.util.ArrayList;
 
-/**
- * Created by 27758 on 2016/11/11.
- */
+
 public class DialogItem {
 
     private SettingItem mItem;

@@ -8,9 +8,7 @@ import android.view.View;
 import poisondog.core.Mission;
 import poisondog.core.NoMission;
 
-/**
- * Created by 27758 on 2016/10/20.
- */
+
 public class ConfirmListener implements View.OnClickListener {
 
 
