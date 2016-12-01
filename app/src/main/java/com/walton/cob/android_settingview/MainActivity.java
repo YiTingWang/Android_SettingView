@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         ListView lvSetting = (ListView) findViewById(R.id.lvSetting);
         List<SettingItem> list = new ArrayList<>();
-
         SettingAdapter settingAdapter = new SettingAdapter(list,this);
 
 
@@ -67,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
         input.put("keyStatus","Current Status:  ");
         input.put("Boolean",Boolean.toString(false));
         input.put("BooleanHidden",Boolean.toString(false));
-        input.put("keyUsed","Used Disk Space\n");
+        input.put("keyUsed","Used Disk Space");
         input.put("keyDefault","Default keep days");
-        input.put("keyLegal","Legal and Privacy\n");
-        input.put("keyInvite","Invite Code Manage\n");
+        input.put("keyLegal","Legal and Privacy");
+        input.put("keyInvite","Invite Code Manage");
         input.put("keyEraseAll","Erase all offline file");
         input.put("keyLogout","Ready to logout?");
 
@@ -96,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        SettingItem settingItem = new SettingItem("ACCOUNT",25);
+        SettingItem settingItem = new SettingItem("ACCOUNT");
+        settingItem.setTextSize(25);
+        settingItem.setPadding(10,10,10,10);
         list.add(settingItem);
 
 
@@ -115,11 +116,14 @@ public class MainActivity extends AppCompatActivity {
         SettingItem settingItem4 = new SettingItem("Date",map.get("keyDate"));
         list.add(settingItem4);
 
-        SettingItem settingItem5 = new SettingItem("SETTING",25);
+
+        SettingItem settingItem5 = new SettingItem("SETTING");
+        settingItem5.setTextSize(25);
+        settingItem5.setPadding(10,10,10,10);
         list.add(settingItem5);
 
 
-        SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(map.get("BooleanHidden")),false,false,false,15);
+        SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(map.get("BooleanHidden")),false,false,false);
         boolean b = Boolean.parseBoolean(map.get("Boolean"));
         SettingItem settingItem6 = new SettingItem("Camera",map.get("keyStatus"),b);
         System.out.println("map : " + map.get("Boolean"));
@@ -139,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItemHidden);
 
 
-        SettingItem settingItem7 = new SettingItem(map.get("keyUsed"),15);
+        SettingItem settingItem7 = new SettingItem(map.get("keyUsed"));
         list.add(settingItem7);
 
 
@@ -149,11 +153,11 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem8);
 
 
-        SettingItem settingItem9 = new SettingItem(map.get("keyLegal"),15);
+        SettingItem settingItem9 = new SettingItem(map.get("keyLegal"));
         list.add(settingItem9);
 
 
-        SettingItem settingItem10 = new SettingItem(map.get("keyInvite"),15);
+        SettingItem settingItem10 = new SettingItem(map.get("keyInvite"));
         MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
         settingItem10.setClickListener(multiChoiceListener);
         list.add(settingItem10);
@@ -169,8 +173,8 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem11);
 
 
-        SettingItem settingItem12 = new SettingItem("Sing out\n",15);
-        ConfirmListener confirmListener1 = new ConfirmListener(MainActivity.this,"Sing out\n",map.get("keyLogout"));
+        SettingItem settingItem12 = new SettingItem("Sing out");
+        ConfirmListener confirmListener1 = new ConfirmListener(MainActivity.this,"Sing out",map.get("keyLogout"));
         YesClickListener yesClickListener1 = new YesClickListener();
         confirmListener1.setYesListener(yesClickListener1);
         NoClickListener noClickListener1 = new NoClickListener();

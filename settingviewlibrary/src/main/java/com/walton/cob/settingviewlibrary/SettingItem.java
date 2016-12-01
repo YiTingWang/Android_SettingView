@@ -13,25 +13,29 @@ public class SettingItem {
     private boolean mShowText;
     private boolean mShowCheck;
     private View.OnClickListener mListener;
-    private float mSize;
+    private float mTextSize;
+    private int mLeft;
+    private int mTop;
+    private int mRight;
+    private int mBottom;
 
     public SettingItem(){
-        this("","",false,false,false,false,15);
+        this("","",false,false,false,false);
     }
 
-    public SettingItem(String title, float size){
-        this(title,"",false,true,false,false,size);
+    public SettingItem(String title){
+        this(title,"",false,true,false,false);
     }
 
     public SettingItem(String title, String text){
-        this(title,text,false,true,true,false,15);
+        this(title,text,false,true,true,false);
     }
 
     public SettingItem(String title, String text, boolean check){
-        this(title, text, check, true, true, true,15);
+        this(title, text, check, true, true, true);
     }
 
-    public SettingItem(String title, String text, boolean check, boolean showTitle, boolean showText, boolean showCheck, float size){
+    public SettingItem(String title, String text, boolean check, boolean showTitle, boolean showText, boolean showCheck){
         mTitle = title;
         mText = text;
         mCheck = check;
@@ -39,66 +43,98 @@ public class SettingItem {
         mShowText = showText;
         mShowCheck = showCheck;
         mListener = new NoListener();
-        mSize = size;
-    }
-
-    public String getTitle(){
-        return mTitle;
-    }
-
-    public String getText(){
-        return mText;
+        mTextSize = 15;
+        mLeft = 50;
+        mTop = 20;
+        mRight = 20;
+        mBottom = 20;
     }
 
     public void setTitle(String title) {
         mTitle = title;
     }
 
+    public String getTitle(){
+        return mTitle;
+    }
+
     public void setText(String text){
         mText = text;
     }
 
-    public float getSize(){
-        return mSize;
+    public String getText(){
+        return mText;
     }
 
-    public boolean getCheck(){
-        return mCheck;
+    public void setTextSize(float size) {
+        mTextSize = size;
+    }
+
+    public float getTextSize(){
+        return mTextSize;
+    }
+
+    public void setPadding(int left, int top, int right, int bottom) {
+        mLeft = left;
+        mTop = top;
+        mRight = right;
+        mBottom = bottom;
+    }
+
+    public int getPaddingLeft() {
+        return mLeft;
+    }
+
+    public int getPaddingTop() {
+        return mTop;
+    }
+
+    public int getPaddingRight() {
+        return mRight;
+    }
+
+    public int getPaddingBottom() {
+        return mBottom;
     }
 
     public void setCheck(boolean check){
         mCheck = check;
     }
 
-    public boolean getTitleVisibility(){
-        return mShowTitle;
+    public boolean getCheck(){
+        return mCheck;
     }
 
     public void setTitleVisibility(boolean showTitle){
         mShowTitle = showTitle;
     }
 
-    public boolean getTextVisibility(){
-        return mShowText;
+    public boolean getTitleVisibility(){
+        return mShowTitle;
     }
 
     public void setTextVisibility(boolean showText){
         mShowText = showText;
     }
 
-    public boolean getCheckVisibility(){
-        return mShowCheck;
+    public boolean getTextVisibility(){
+        return mShowText;
     }
 
     public void setCheckVisibility(boolean showCheck){
         mShowCheck = showCheck;
     }
 
-    public View.OnClickListener getClickListener(){
-        return mListener;
+    public boolean getCheckVisibility(){
+        return mShowCheck;
     }
 
     public void setClickListener(View.OnClickListener listener){
         mListener = listener;
     }
+
+    public View.OnClickListener getClickListener(){
+        return mListener;
+    }
+
 }
