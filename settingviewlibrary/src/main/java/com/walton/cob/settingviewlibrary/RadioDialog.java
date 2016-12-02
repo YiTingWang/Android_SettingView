@@ -1,5 +1,6 @@
 package com.walton.cob.settingviewlibrary;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
