@@ -29,7 +29,6 @@ public class CheckListener implements View.OnClickListener {
         mSettingItem = settingItem;
         mSettingAdapter = settingAdapter;
         mMission = new NoMission<Void>();
-        //setStatus();
         mSaveSharedPreferences = save;
         mMap = map;
     }
@@ -44,9 +43,7 @@ public class CheckListener implements View.OnClickListener {
         mMap.put("Boolean",Boolean.toString(mSettingItem.getCheck()));
         mSaveSharedPreferences.execute(mMap);
 
-        //System.out.println(v.getClass());
-        //setStatus();
-        //Mission<Void> mission = new ChangeStatus(mSettingItem,mSettingItemHidden);
+
         try{
             mMission.execute(null);
         }catch (Exception e) {
@@ -54,8 +51,6 @@ public class CheckListener implements View.OnClickListener {
         }
 
 
-
-        System.out.println(mSettingItem.getCheck());
         mSettingAdapter.notifyDataSetChanged();
     }
 

@@ -10,7 +10,6 @@ public class NoClickListener implements DialogInterface.OnClickListener {
     }
 
     public void onClick(DialogInterface dialog, int which){
-        System.out.println("No");
 
     }
 }

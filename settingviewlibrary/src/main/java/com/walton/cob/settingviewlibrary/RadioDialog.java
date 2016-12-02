@@ -6,6 +6,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import poisondog.android.preference.SaveSharedPreferences;
@@ -19,6 +20,7 @@ public class RadioDialog extends DialogFragment {
 
     public Dialog onCreateDialog(Bundle savedInstanceState){
 
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Keep Day").setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
             @Override
@@ -26,22 +28,18 @@ public class RadioDialog extends DialogFragment {
                 switch (which){
                     case 0:
                         selection = (String) items[which];
-
-                        dialog.dismiss();
                         break;
                     case 1:
                         selection = (String) items[which];
-                        dialog.dismiss();
                         break;
                     case 2:
                         selection = (String) items[which];
-                        dialog.dismiss();
                         break;
                     case 3:
                         selection = (String) items[which];
-                        dialog.dismiss();
                         break;
                 }
+                dialog.dismiss();
             }
         }).setNegativeButton("取消",null);
         return builder.create();

@@ -60,6 +60,7 @@ public class SettingAdapter extends BaseAdapter{
 
 //        if(settingItem.getTitleVisibility() == false && settingItem.getTextVisibility() == false && settingItem.getCheckVisibility() == false){
 //            row.setVisibility(View.GONE);
+//
 //        }else{
 //            row.setVisibility(View.VISIBLE);
 //        }
@@ -69,7 +70,7 @@ public class SettingAdapter extends BaseAdapter{
         checkBox.setChecked(settingItem.getCheck());
 
         titleView.setText(settingItem.getTitle());
-        titleView.setTextSize(settingItem.getTextSize());
+        titleView.setTextSize(settingItem.getTitleSize());
         //titleView.setTypeface(Typeface.DEFAULT,Typeface.BOLD);
         //titleView.setTextColor(Color.RED);
         textView.setText(settingItem.getText());

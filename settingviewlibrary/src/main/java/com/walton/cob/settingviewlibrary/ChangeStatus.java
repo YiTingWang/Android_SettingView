@@ -30,7 +30,6 @@ public class ChangeStatus implements Mission<Void> {
             mMap.put("keyStatus",mSettingItem.getText());
             mSaveSharedPreferences.execute(mMap);
 
-            System.out.println(mSettingItem.getText());
         }else{
             mSettingItem.setText(mSettingItem.getText().substring(0,16)+"Close");
             mSettingItemHidden.setTitleVisibility(false);
@@ -40,7 +39,6 @@ public class ChangeStatus implements Mission<Void> {
             mMap.put("keyStatus",mSettingItem.getText());
             mSaveSharedPreferences.execute(mMap);
 
-            System.out.println(mSettingItem.getText());
         }
         return null;
     }

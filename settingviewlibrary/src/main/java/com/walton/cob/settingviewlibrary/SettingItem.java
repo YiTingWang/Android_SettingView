@@ -13,7 +13,7 @@ public class SettingItem {
     private boolean mShowText;
     private boolean mShowCheck;
     private View.OnClickListener mListener;
-    private float mTextSize;
+    private float mTitleSize;
     private int mLeft;
     private int mTop;
     private int mRight;
@@ -43,7 +43,7 @@ public class SettingItem {
         mShowText = showText;
         mShowCheck = showCheck;
         mListener = new NoListener();
-        mTextSize = 15;
+        mTitleSize = 15;
         mLeft = 50;
         mTop = 20;
         mRight = 20;
@@ -66,12 +66,12 @@ public class SettingItem {
         return mText;
     }
 
-    public void setTextSize(float size) {
-        mTextSize = size;
+    public void setTitleSize(float size) {
+        mTitleSize = size;
     }
 
-    public float getTextSize(){
-        return mTextSize;
+    public float getTitleSize(){
+        return mTitleSize;
     }
 
     public void setPadding(int left, int top, int right, int bottom) {

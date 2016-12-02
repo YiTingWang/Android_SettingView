@@ -17,6 +17,8 @@ package com.walton.cob.android_settingview;
 
 import com.walton.cob.settingviewlibrary.ChangeStatus;
 import com.walton.cob.settingviewlibrary.CheckHiddenListener;
+import com.walton.cob.settingviewlibrary.DialogAdapter;
+import com.walton.cob.settingviewlibrary.DialogItem;
 import com.walton.cob.settingviewlibrary.NoClickListener;
 import com.walton.cob.settingviewlibrary.YesClickListener;
 import com.walton.cob.settingviewlibrary.SettingItem;
@@ -26,6 +28,7 @@ import com.walton.cob.settingviewlibrary.RadioListener;
 import com.walton.cob.settingviewlibrary.MultiChoiceListener;
 import com.walton.cob.settingviewlibrary.ConfirmListener;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
@@ -96,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         SettingItem settingItem = new SettingItem("ACCOUNT");
-        settingItem.setTextSize(25);
+        settingItem.setTitleSize(25);
         settingItem.setPadding(10,10,10,10);
         list.add(settingItem);
 
@@ -118,16 +121,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         SettingItem settingItem5 = new SettingItem("SETTING");
-        settingItem5.setTextSize(25);
+        settingItem5.setTitleSize(25);
         settingItem5.setPadding(10,10,10,10);
         list.add(settingItem5);
 
 
         SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(map.get("BooleanHidden")),false,false,false);
-        boolean b = Boolean.parseBoolean(map.get("Boolean"));
-        SettingItem settingItem6 = new SettingItem("Camera",map.get("keyStatus"),b);
-        System.out.println("map : " + map.get("Boolean"));
-        System.out.println("checkbox : " + b);
+        SettingItem settingItem6 = new SettingItem("Camera",map.get("keyStatus"),Boolean.parseBoolean(map.get("Boolean")));
         CheckListener checkListener = new CheckListener(settingItem6,settingAdapter,saveSharedPreferences,map);
         settingItem6.setClickListener(checkListener);
         Mission<Void> mission = new ChangeStatus(settingItem6,settingItemHidden,saveSharedPreferences,map);
@@ -157,10 +157,49 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem9);
 
 
+
+        /* Invite Code Manage*/
+        List<DialogItem> listDialog = new ArrayList<>();
+
+        DialogItem dialogItem = new DialogItem("Title1","Text1","X1");
+        listDialog.add(dialogItem);
+
+        DialogItem dialogItem1 = new DialogItem("Title2","Text2","X2");
+        listDialog.add(dialogItem1);
+
+        DialogItem dialogItem2 = new DialogItem("Title3","Text3","X3");
+        listDialog.add(dialogItem2);
+
         SettingItem settingItem10 = new SettingItem(map.get("keyInvite"));
         MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
+        multiChoiceListener.setAdapter(new DialogAdapter(listDialog,MainActivity.this));
+        multiChoiceListener.setClickListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        multiChoiceListener.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        multiChoiceListener.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        multiChoiceListener.setNeutralButton("Invite", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
         settingItem10.setClickListener(multiChoiceListener);
         list.add(settingItem10);
+
 
 
         SettingItem settingItem11 = new SettingItem("Erase",map.get("keyEraseAll"));
@@ -187,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         lvSetting.setAdapter(settingAdapter);
+
 
     }
 

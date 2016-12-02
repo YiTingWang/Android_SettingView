@@ -12,7 +12,6 @@ public class YesClickListener implements DialogInterface.OnClickListener{
     }
 
     public void onClick(DialogInterface dialog, int which){
-        System.out.println("Yes");
 
     }
 
