@@ -58,12 +58,11 @@ public class SettingAdapter extends BaseAdapter{
         }
 
 
+
         if(settingItem.getTitleVisibility() == false && settingItem.getTextVisibility() == false && settingItem.getCheckVisibility() == false){
-            row.setVisibility(View.GONE);
-            //settingItem.setPadding(0,0,0,0);
-        }else{
-            row.setVisibility(View.VISIBLE);
-            //settingItem.setPadding(50,20,20,20);
+            settingItem.setPadding(0,0,0,0);
+        }else if(settingItem.getCheckVisibility() == true){
+            settingItem.setPadding(50,20,20,20);
         }
 
 

@@ -160,7 +160,6 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem9);
 
 
-
         /* Invite Code Manage*/
         List<DialogItem> listDialog = new ArrayList<>();
 
@@ -202,7 +201,6 @@ public class MainActivity extends AppCompatActivity {
         });
         settingItem10.setClickListener(multiChoiceListener);
         list.add(settingItem10);
-
 
 
         SettingItem settingItem11 = new SettingItem("Erase",map.get("keyEraseAll"));
