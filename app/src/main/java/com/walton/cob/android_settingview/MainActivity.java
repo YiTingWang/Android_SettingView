@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         input.put("keyInvite","Invite Code Manage");
         input.put("keyEraseAll","Erase all offline file");
         input.put("keyLogout","Ready to logout?");
+        input.put("keyRadio",Integer.toString(-1));
+
 
 
 
@@ -149,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         SettingItem settingItem8 = new SettingItem("Keep Day",map.get("keyDefault"));
-        RadioListener radioListener = new RadioListener(MainActivity.this);
+        RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,map);
         settingItem8.setClickListener(radioListener);
         list.add(settingItem8);
 
@@ -224,9 +226,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
         lvSetting.setAdapter(settingAdapter);
+
+
+
+
+
+        System.out.println(Integer.parseInt(map.get("keyRadio")));
 
 
     }

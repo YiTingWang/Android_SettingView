@@ -17,17 +17,21 @@ public class RadioListener implements View.OnClickListener {
     final String[] items = new String[] {"5 Days","10 Days","20 Days","30 Days"};
     private String selection;
 
+    private SaveSharedPreferences mSaveSharedPreferences;
+    private Map<String, String> mMap;
 
-    public RadioListener(AppCompatActivity activity) {
+
+    public RadioListener(AppCompatActivity activity, SaveSharedPreferences save, Map<String, String> map) {
         mMainActivity = activity;
+        mSaveSharedPreferences = save;
+        mMap = map;
     }
 
 
     public void onClick(View v) {
 
-
         final AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity);
-        builder.setTitle("Keep Day").setSingleChoiceItems(items, -1, new DialogInterface.OnClickListener() {
+        builder.setTitle("Keep Day").setSingleChoiceItems(items, Integer.parseInt(mMap.get("keyRadio")), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
@@ -44,6 +48,8 @@ public class RadioListener implements View.OnClickListener {
                         selection = (String) items[which];
                         break;
                 }
+                mMap.put("keyRadio",Integer.toString(which));
+                mSaveSharedPreferences.execute(mMap);
                 dialog.dismiss();
             }
         }).setNegativeButton("取消",null);
