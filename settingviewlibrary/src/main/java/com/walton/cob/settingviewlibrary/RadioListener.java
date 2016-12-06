@@ -1,6 +1,7 @@
 package com.walton.cob.settingviewlibrary;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +13,7 @@ import poisondog.android.preference.SaveSharedPreferences;
 
 public class RadioListener implements View.OnClickListener {
 
-    private AppCompatActivity mMainActivity;
+    private Context mMainActivity;
 
     final String[] items = new String[] {"5 Days","10 Days","20 Days","30 Days"};
     private String selection;
@@ -21,7 +22,7 @@ public class RadioListener implements View.OnClickListener {
     private Map<String, String> mMap;
 
 
-    public RadioListener(AppCompatActivity activity, SaveSharedPreferences save, Map<String, String> map) {
+    public RadioListener(Context activity, SaveSharedPreferences save, Map<String, String> map) {
         mMainActivity = activity;
         mSaveSharedPreferences = save;
         mMap = map;

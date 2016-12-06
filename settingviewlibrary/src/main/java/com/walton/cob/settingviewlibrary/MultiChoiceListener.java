@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MultiChoiceListener implements View.OnClickListener {
 
-    private AppCompatActivity mMainActivity;
+    private Context mMainActivity;
     private ListAdapter mAdapter;
     private DialogInterface.OnClickListener mListener;
     private String mPositiveText;
@@ -26,7 +26,7 @@ public class MultiChoiceListener implements View.OnClickListener {
     private DialogInterface.OnClickListener mNeutralListener;
 
 
-    public MultiChoiceListener(AppCompatActivity activity) {
+    public MultiChoiceListener(Context activity) {
         mMainActivity = activity;
     }
 
