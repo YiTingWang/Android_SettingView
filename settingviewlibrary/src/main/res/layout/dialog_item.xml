@@ -32,11 +32,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvDialogOther"
         android:singleLine="false"
-        android:layout_marginLeft="57dp"
-        android:layout_marginStart="57dp"
-        android:layout_below="@+id/tvDialogTitle"
-        android:layout_toRightOf="@+id/tvDialogTitle"
-        android:layout_toEndOf="@+id/tvDialogTitle" />
+        android:layout_marginEnd="25dp"
+        android:layout_alignTop="@+id/tvDialogText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <CheckBox
         android:layout_width="wrap_content"
