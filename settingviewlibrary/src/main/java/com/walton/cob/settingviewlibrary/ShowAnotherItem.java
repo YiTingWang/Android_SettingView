@@ -22,25 +22,25 @@ import poisondog.core.Mission;
  * @since 2016-12-02
  */
 public class ShowAnotherItem implements Mission<SettingItem> {
-	private SettingItem mCheck;
+	private SettingItem mHidden;
 
 	/**
 	 * Constructor
 	 */
-	public ShowAnotherItem(SettingItem check) {
-		mCheck = check;
+	public ShowAnotherItem(SettingItem hidden) {
+		mHidden = hidden;
 	}
 
 	@Override
 	public SettingItem execute(SettingItem item) {
-		if(mCheck.getCheck()){
-			item.setTitleVisibility(true);
-			item.setTextVisibility(true);
-			item.setCheckVisibility(true);
+		if(item.getCheck()){
+			mHidden.setTitleVisibility(true);
+			mHidden.setTextVisibility(true);
+			mHidden.setCheckVisibility(true);
 		}else{
-			item.setTitleVisibility(false);
-			item.setTextVisibility(false);
-			item.setCheckVisibility(false);
+			mHidden.setTitleVisibility(false);
+			mHidden.setTextVisibility(false);
+			mHidden.setCheckVisibility(false);
 		}
 		return item;
 	}
