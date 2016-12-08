@@ -1,6 +1,7 @@
 package com.walton.cob.settingviewlibrary;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,9 @@ public class DialogAdapter extends BaseAdapter {
         dialogOtherView.setText(dialogItem.getDialogOther());
 
         dialogCheckBox.setChecked(dialogItem.getDialogCheck());
+
+        dialogView.setBackgroundColor(dialogItem.getBackgroundColor());
+        //dialogView.setBackgroundColor(Color.WHITE); // set background color for the view which in the dialog of "Invite Code Manage"
 
         return dialogView;
     }

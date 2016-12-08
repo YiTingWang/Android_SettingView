@@ -1,5 +1,6 @@
 package com.walton.cob.settingviewlibrary;
 
+import android.graphics.Color;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ public class DialogItem {
 
     private SettingItem mItem;
     private String mDialogOther;
+    private int mBackgroundColor;
 
 
     public DialogItem(String title, String text, String other) {
@@ -47,6 +49,14 @@ public class DialogItem {
 
     public void setDialogCheck(boolean check){
         mItem.setCheck(check);
+    }
+
+    public int getBackgroundColor() {
+        return mBackgroundColor;
+    }
+
+    public void setBackgroundColor(int color) {
+        mBackgroundColor = color;
     }
 
     public View.OnClickListener getClickListener(){

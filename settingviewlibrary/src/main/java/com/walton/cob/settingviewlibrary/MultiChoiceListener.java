@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Adapter;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import java.util.List;
 public class MultiChoiceListener implements View.OnClickListener {
 
     private Context mMainActivity;
-    private ListAdapter mAdapter;
+    private BaseAdapter mAdapter;
     private DialogInterface.OnClickListener mListener;
     private String mPositiveText;
     private DialogInterface.OnClickListener mPositiveListener;
@@ -30,7 +32,7 @@ public class MultiChoiceListener implements View.OnClickListener {
         mMainActivity = activity;
     }
 
-    public void setAdapter(ListAdapter adapter) {
+    public void setAdapter(BaseAdapter adapter) {
         mAdapter = adapter;
     }
 
@@ -55,7 +57,9 @@ public class MultiChoiceListener implements View.OnClickListener {
 
     public void onClick(View v) {
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity);
+
 
         builder.setAdapter(mAdapter,mListener);
 
@@ -64,7 +68,11 @@ public class MultiChoiceListener implements View.OnClickListener {
         builder.setNegativeButton(mNegativeText,mNegativeListener);
         builder.setNeutralButton(mNeutralText,mNeutralListener);
 
+
         builder.create().show();
+
+
+
 
     }
 

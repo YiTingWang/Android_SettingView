@@ -30,9 +30,12 @@ import com.walton.cob.settingviewlibrary.ConfirmListener;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
+
+import org.apache.regexp.REDebugCompiler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -173,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         listDialog.add(dialogItem2);
 
         SettingItem settingItem10 = new SettingItem(map.get("keyInvite"));
-        MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
+        final MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
         multiChoiceListener.setAdapter(new DialogAdapter(listDialog,MainActivity.this));
         multiChoiceListener.setClickListener(new DialogInterface.OnClickListener() {
             @Override
