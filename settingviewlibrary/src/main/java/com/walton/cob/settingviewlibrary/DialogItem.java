@@ -53,7 +53,7 @@ public class DialogItem {
         return mItem.getClickListener();
     }
 
-    private void setClickListener(View.OnClickListener listener){
+    public void setClickListener(View.OnClickListener listener){
         mItem.setClickListener(listener);
     }
 
