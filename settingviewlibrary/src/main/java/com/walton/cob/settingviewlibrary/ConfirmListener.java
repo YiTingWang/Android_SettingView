@@ -20,10 +20,13 @@ public class ConfirmListener implements View.OnClickListener {
     private DialogInterface.OnClickListener mYesListener;
     private DialogInterface.OnClickListener mNoListener;
 
-    public ConfirmListener(Context activity, String title, String message) {
+    private int mBackgroundColor;
+
+    public ConfirmListener(Context activity, String title, String message, int color) {
         mMainActivity = activity;
         mTitle = title;
         mMessage = message;
+        mBackgroundColor = color;
 
         mNoListener = new DialogInterface.OnClickListener() {
             @Override
@@ -53,7 +56,7 @@ public class ConfirmListener implements View.OnClickListener {
 
     public void onClick(View v){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mBackgroundColor);
         builder.setTitle(mTitle);
         builder.setMessage(mMessage);
         //builder.setCancelable(false);   //不能使用手機返回鑑離開AlertDialogtime

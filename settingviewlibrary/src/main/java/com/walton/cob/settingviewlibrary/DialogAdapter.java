@@ -49,7 +49,6 @@ public class DialogAdapter extends BaseAdapter {
         dialogCheckBox.setChecked(dialogItem.getDialogCheck());
 
         dialogView.setBackgroundColor(dialogItem.getBackgroundColor());
-        //dialogView.setBackgroundColor(Color.WHITE); // set background color for the view which in the dialog of "Invite Code Manage"
 
         return dialogView;
     }
