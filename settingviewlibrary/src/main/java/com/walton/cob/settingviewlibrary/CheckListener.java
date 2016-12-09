@@ -20,7 +20,8 @@ public class CheckListener implements View.OnClickListener {
 
     private SettingItem mSettingItem;
     private BaseAdapter mSettingAdapter;
-    private Mission<Void> mMission;
+    private Mission<SettingItem> mMission;
+    private Mission<SettingItem> mMission1;
     private SaveSharedPreferences mSaveSharedPreferences;
     private Map<String, String> mMap;
 
@@ -28,13 +29,15 @@ public class CheckListener implements View.OnClickListener {
     public CheckListener(SettingItem settingItem, BaseAdapter settingAdapter, SaveSharedPreferences save, Map<String, String> map){
         mSettingItem = settingItem;
         mSettingAdapter = settingAdapter;
-        mMission = new NoMission<Void>();
+        mMission = new NoMission<SettingItem>();
+        mMission1 = new NoMission<SettingItem>();
         mSaveSharedPreferences = save;
         mMap = map;
     }
 
-    public void setMission(Mission<Void> mission) {
+    public void setMission(Mission<SettingItem> mission, Mission<SettingItem>  mission1) {
         mMission = mission;
+        mMission1 = mission1;
     }
 
     public void onClick(View v){
@@ -45,10 +48,16 @@ public class CheckListener implements View.OnClickListener {
 
 
         try{
-            mMission.execute(null);
+            mMission.execute(mSettingItem);
+            mMission1.execute(mSettingItem);
         }catch (Exception e) {
             e.printStackTrace();
         }
+
+
+        mMap.put("keyStatus",mSettingItem.getText());
+        mSaveSharedPreferences.execute(mMap);
+
 
 
         mSettingAdapter.notifyDataSetChanged();

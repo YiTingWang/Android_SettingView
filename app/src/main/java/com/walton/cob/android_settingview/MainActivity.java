@@ -20,6 +20,8 @@ import com.walton.cob.settingviewlibrary.CheckHiddenListener;
 import com.walton.cob.settingviewlibrary.DialogAdapter;
 import com.walton.cob.settingviewlibrary.DialogItem;
 import com.walton.cob.settingviewlibrary.NoClickListener;
+import com.walton.cob.settingviewlibrary.ShowAnotherItem;
+import com.walton.cob.settingviewlibrary.UpdateText;
 import com.walton.cob.settingviewlibrary.YesClickListener;
 import com.walton.cob.settingviewlibrary.SettingItem;
 import com.walton.cob.settingviewlibrary.SettingAdapter;
@@ -136,15 +138,27 @@ public class MainActivity extends AppCompatActivity {
         SettingItem settingItem6 = new SettingItem("Camera",map.get("keyStatus"),Boolean.parseBoolean(map.get("Boolean")));
         CheckListener checkListener = new CheckListener(settingItem6,settingAdapter,saveSharedPreferences,map);
         settingItem6.setClickListener(checkListener);
-        Mission<Void> mission = new ChangeStatus(settingItem6,settingItemHidden,saveSharedPreferences,map);
-        try{
-            mission.execute(null);
-        }catch (Exception e) {
+        Mission<SettingItem> mission = new ShowAnotherItem(settingItemHidden);
+        Mission<SettingItem> mission1 = new UpdateText(settingItem6.getText().substring(0,16)+"Open",settingItem6.getText().substring(0,16)+"Close");
+        checkListener.setMission(mission,mission1);
+
+        try {
+            mission.execute(settingItem6);
+        }catch (Exception e){
             e.printStackTrace();
         }
-        checkListener.setMission(mission);
-        CheckHiddenListener checksListener = new CheckHiddenListener(settingItemHidden,settingAdapter,saveSharedPreferences,map);
-        settingItemHidden.setClickListener(checksListener);
+
+//        Mission<Void> mission = new ChangeStatus(settingItem6,settingItemHidden,saveSharedPreferences,map);
+//        try{
+//            mission.execute(null);
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        checkListener.setMission(mission);
+
+        CheckHiddenListener checkHiddenListener = new CheckHiddenListener(settingItemHidden,settingAdapter,saveSharedPreferences,map);
+        settingItemHidden.setClickListener(checkHiddenListener);
+
         list.add(settingItem6);
         list.add(settingItemHidden);
 
