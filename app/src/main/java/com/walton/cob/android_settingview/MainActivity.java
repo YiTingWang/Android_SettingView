@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
         SettingItem settingItem8 = new SettingItem("Keep Day",map.get("keyDefault"));
         String[] items = new String[]{"5 Days","10 Days","20 Days","30 Days"};
-        RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,map,R.style.AlertDialog,"Keep Day",items);
+        RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,map,"Keep Day",items);
         settingItem8.setClickListener(radioListener);
         list.add(settingItem8);
 
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
         listDialog.add(dialogItem2);
 
         SettingItem settingItem10 = new SettingItem(map.get("keyInvite"));
-        final MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this,R.style.AlertDialog);
+        final MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
         multiChoiceListener.setAdapter(new DialogAdapter(listDialog,MainActivity.this));
         multiChoiceListener.setClickListener(new DialogInterface.OnClickListener() {
             @Override
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         SettingItem settingItem11 = new SettingItem("Erase",map.get("keyEraseAll"));
-        ConfirmListener confirmListener = new ConfirmListener(MainActivity.this,"Erase",map.get("keyEraseAll"),R.style.AlertDialog);
+        ConfirmListener confirmListener = new ConfirmListener(MainActivity.this,"Erase",map.get("keyEraseAll"));
         YesClickListener yesClickListener = new YesClickListener();
         confirmListener.setYesListener(yesClickListener);
         NoClickListener noClickListener = new NoClickListener();
@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         SettingItem settingItem12 = new SettingItem("Sing out");
-        ConfirmListener confirmListener1 = new ConfirmListener(MainActivity.this,"Sing out",map.get("keyLogout"),R.style.AlertDialog);
+        ConfirmListener confirmListener1 = new ConfirmListener(MainActivity.this,"Sing out",map.get("keyLogout"));
         YesClickListener yesClickListener1 = new YesClickListener();
         confirmListener1.setYesListener(yesClickListener1);
         NoClickListener noClickListener1 = new NoClickListener();

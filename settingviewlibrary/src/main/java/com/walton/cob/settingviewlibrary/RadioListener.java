@@ -3,6 +3,7 @@ package com.walton.cob.settingviewlibrary;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -20,26 +21,33 @@ public class RadioListener implements View.OnClickListener {
 
     private SaveSharedPreferences mSaveSharedPreferences;
     private Map<String, String> mMap;
-
-    private int mBackgroundColor;
+    private int mColor;
 
     private String mTitle;
     private String[] mItems;
 
 
-    public RadioListener(Context activity, SaveSharedPreferences save, Map<String, String> map, int color, String title, String[] items) {
+    public RadioListener(Context activity, SaveSharedPreferences save, Map<String, String> map, String title, String[] items) {
         mMainActivity = activity;
         mSaveSharedPreferences = save;
         mMap = map;
-        mBackgroundColor = color;
         mTitle = title;
         mItems = items;
     }
 
 
+    public int getColor() {
+        return mColor;
+    }
+
+    public void setColor(int color) {
+        mColor = color;
+    }
+
+
     public void onClick(View v) {
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mBackgroundColor);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mColor);
         builder.setTitle(mTitle).setSingleChoiceItems(mItems, Integer.parseInt(mMap.get("keyRadio")), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

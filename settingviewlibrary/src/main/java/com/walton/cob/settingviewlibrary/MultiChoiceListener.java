@@ -26,13 +26,12 @@ public class MultiChoiceListener implements View.OnClickListener {
     private DialogInterface.OnClickListener mNegativeListener;
     private String mNeutralText;
     private DialogInterface.OnClickListener mNeutralListener;
+    private int mColor;
 
-    private int mBackgroundColor;
 
 
-    public MultiChoiceListener(Context activity, int color) {
+    public MultiChoiceListener(Context activity) {
         mMainActivity = activity;
-        mBackgroundColor = color;
     }
 
     public void setAdapter(BaseAdapter adapter) {
@@ -58,10 +57,18 @@ public class MultiChoiceListener implements View.OnClickListener {
         mNeutralListener = listener;
     }
 
+    public int getColor() {
+        return mColor;
+    }
+
+    public void setColor(int color) {
+        mColor = color;
+    }
+
     public void onClick(View v) {
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mBackgroundColor);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mColor);
 
 
         builder.setAdapter(mAdapter,mListener);

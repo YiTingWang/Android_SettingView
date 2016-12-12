@@ -3,6 +3,7 @@ package com.walton.cob.settingviewlibrary;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.preference.CheckBoxPreference;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,14 +20,13 @@ public class ConfirmListener implements View.OnClickListener {
     private String mMessage;
     private DialogInterface.OnClickListener mYesListener;
     private DialogInterface.OnClickListener mNoListener;
+    private int mColor;
 
-    private int mBackgroundColor;
 
-    public ConfirmListener(Context activity, String title, String message, int color) {
+    public ConfirmListener(Context activity, String title, String message) {
         mMainActivity = activity;
         mTitle = title;
         mMessage = message;
-        mBackgroundColor = color;
 
         mNoListener = new DialogInterface.OnClickListener() {
             @Override
@@ -53,10 +53,18 @@ public class ConfirmListener implements View.OnClickListener {
         mNoListener = listener;
     }
 
+    public int getCColor() {
+        return mColor;
+    }
+
+    public void setColor(int color) {
+        mColor = color;
+    }
+
 
     public void onClick(View v){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mBackgroundColor);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mColor);
         builder.setTitle(mTitle);
         builder.setMessage(mMessage);
         //builder.setCancelable(false);   //不能使用手機返回鑑離開AlertDialogtime
