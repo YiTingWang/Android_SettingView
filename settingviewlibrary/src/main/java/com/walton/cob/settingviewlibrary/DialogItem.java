@@ -11,12 +11,17 @@ public class DialogItem {
     private SettingItem mItem;
     private String mDialogOther;
     private int mBackgroundColor;
+    private String[] mItems;
 
 
     public DialogItem(String title, String text, String other) {
         SettingItem settingItem = new SettingItem(title,text);
         mItem = settingItem;
         mDialogOther = other;
+    }
+
+    public DialogItem(String[] items) {
+        mItems = items;
     }
 
     public String getDialogTitle() {
@@ -55,6 +60,7 @@ public class DialogItem {
         return mBackgroundColor;
     }
 
+    /* Set the individual item's background color which added in the multiChoice dialog*/
     public void setBackgroundColor(int color) {
         mBackgroundColor = color;
     }

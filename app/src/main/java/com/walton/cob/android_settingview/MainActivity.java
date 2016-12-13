@@ -15,8 +15,6 @@
  */
 package com.walton.cob.android_settingview;
 
-import com.walton.cob.settingviewlibrary.ChangeStatus;
-import com.walton.cob.settingviewlibrary.CheckHiddenListener;
 import com.walton.cob.settingviewlibrary.DialogAdapter;
 import com.walton.cob.settingviewlibrary.DialogItem;
 import com.walton.cob.settingviewlibrary.NoClickListener;
@@ -25,7 +23,6 @@ import com.walton.cob.settingviewlibrary.UpdateText;
 import com.walton.cob.settingviewlibrary.YesClickListener;
 import com.walton.cob.settingviewlibrary.SettingItem;
 import com.walton.cob.settingviewlibrary.SettingAdapter;
-import com.walton.cob.settingviewlibrary.CheckListener;
 import com.walton.cob.settingviewlibrary.RadioListener;
 import com.walton.cob.settingviewlibrary.MultiChoiceListener;
 import com.walton.cob.settingviewlibrary.ConfirmListener;
@@ -35,7 +32,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 
 import org.apache.regexp.REDebugCompiler;
 
@@ -53,8 +52,10 @@ import poisondog.android.preference.LoadSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Map<String, String> mMap;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListView lvSetting = (ListView) findViewById(R.id.lvSetting);
         List<SettingItem> list = new ArrayList<>();
-        SettingAdapter settingAdapter = new SettingAdapter(list,this);
+        final SettingAdapter settingAdapter = new SettingAdapter(list,this);
 
 
 
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
         LoadSharedPreferences loadSharedPreferences = new LoadSharedPreferences(this,"temp");
         Map<String, String> map = loadSharedPreferences.execute("");
+        mMap = map;
 
 //        for (String key : input.keySet()) {
 //            if(map.get(key) == null) {
@@ -95,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }
 
-        if(map.isEmpty()){
-            map = input;
+        if(mMap.isEmpty()){
+            mMap = input;
         }
 
-        SaveSharedPreferences saveSharedPreferences = new SaveSharedPreferences(this,"temp");
+        final SaveSharedPreferences saveSharedPreferences = new SaveSharedPreferences(this,"temp");
         //saveSharedPreferences.execute(input);
 
 
@@ -134,31 +136,48 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem5);
 
 
-        SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(map.get("BooleanHidden")),false,false,false);
-        SettingItem settingItem6 = new SettingItem("Camera",map.get("keyStatus"),Boolean.parseBoolean(map.get("Boolean")));
-        CheckListener checkListener = new CheckListener(settingItem6,settingAdapter,saveSharedPreferences,map);
-        settingItem6.setClickListener(checkListener);
-        Mission<SettingItem> mission = new ShowAnotherItem(settingItemHidden);
-        Mission<SettingItem> mission1 = new UpdateText(settingItem6.getText().substring(0,16)+"Open",settingItem6.getText().substring(0,16)+"Close");
-        checkListener.setMission(mission,mission1);
-
+        /* Camera*/
+        final SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(map.get("BooleanHidden")),false,false,false);
+        final SettingItem settingItem6 = new SettingItem("Camera",map.get("keyStatus"),Boolean.parseBoolean(map.get("Boolean")));
+        final Mission<SettingItem> mission = new ShowAnotherItem(settingItemHidden);
+        final Mission<SettingItem> mission1 = new UpdateText(settingItem6.getText().substring(0,16)+"Open",settingItem6.getText().substring(0,16)+"Close");
         try {
             mission.execute(settingItem6);
         }catch (Exception e){
             e.printStackTrace();
         }
+        settingItem6.setClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                settingItem6.setCheck(!settingItem6.getCheck());
 
-//        Mission<Void> mission = new ChangeStatus(settingItem6,settingItemHidden,saveSharedPreferences,map);
-//        try{
-//            mission.execute(null);
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        checkListener.setMission(mission);
+                mMap.put("Boolean",Boolean.toString(settingItem6.getCheck()));
+                saveSharedPreferences.execute(mMap);
 
-        CheckHiddenListener checkHiddenListener = new CheckHiddenListener(settingItemHidden,settingAdapter,saveSharedPreferences,map);
-        settingItemHidden.setClickListener(checkHiddenListener);
+                try{
+                    mission.execute(settingItem6);
+                    mission1.execute(settingItem6);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
 
+                mMap.put("keyStatus",settingItem6.getText());
+                saveSharedPreferences.execute(mMap);
+
+                settingAdapter.notifyDataSetChanged();
+            }
+        });
+        settingItemHidden.setClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                settingItemHidden.setCheck(!settingItemHidden.getCheck());
+
+                mMap.put("BooleanHidden",Boolean.toString(settingItemHidden.getCheck()));
+                saveSharedPreferences.execute(mMap);
+
+                settingAdapter.notifyDataSetChanged();
+            }
+        });
         list.add(settingItem6);
         list.add(settingItemHidden);
 
@@ -178,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem9);
 
 
-        /* Invite Code Manage*/
+        /* Invite Code Manage*//* Invite Code Manage*/
         List<DialogItem> listDialog = new ArrayList<>();
 
         DialogItem dialogItem = new DialogItem("Title1","Text1","X1");

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class DialogAdapter extends BaseAdapter {
         TextView dialogTextView = (TextView) dialogView.findViewById(R.id.tvDialogText);
         TextView dialogOtherView = (TextView) dialogView.findViewById(R.id.tvDialogOther);
         CheckBox dialogCheckBox = (CheckBox) dialogView.findViewById(R.id.DialogCheckbox);
+        RadioButton dialogRadioButton = (RadioButton) dialogView.findViewById(R.id.DialogRadioButton);
 
         dialogView.setOnClickListener(dialogItem.getClickListener());
         dialogCheckBox.setOnClickListener(dialogItem.getClickListener());

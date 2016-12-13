@@ -73,8 +73,6 @@ public class RadioListener implements View.OnClickListener {
 
         builder.create().show();
 
-//        RadioDialog radioDialog = new RadioDialog();
-//        radioDialog.show(mMainActivity.getFragmentManager(),"radioDialog");
     }
 
 }
