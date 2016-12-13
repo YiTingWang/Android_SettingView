@@ -51,6 +51,10 @@ public class DialogAdapter extends BaseAdapter {
         dialogCheckBox.setChecked(dialogItem.getDialogCheck());
 
         dialogView.setBackgroundColor(dialogItem.getBackgroundColor());
+        dialogTitleView.setTextColor(dialogItem.getTitleColor());
+        dialogTextView.setTextColor(dialogItem.getTextColor());
+        dialogOtherView.setTextColor(dialogItem.getOtherColor());
+
 
         return dialogView;
     }

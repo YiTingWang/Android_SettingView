@@ -10,8 +10,11 @@ public class DialogItem {
 
     private SettingItem mItem;
     private String mDialogOther;
-    private int mBackgroundColor;
     private String[] mItems;
+    private int mBackgroundColor;
+    private int mTitleColor;
+    private int mTextColor;
+    private int mOtherColor;
 
 
     public DialogItem(String title, String text, String other) {
@@ -63,6 +66,30 @@ public class DialogItem {
     /* Set the individual item's background color which added in the multiChoice dialog*/
     public void setBackgroundColor(int color) {
         mBackgroundColor = color;
+    }
+
+    public int getTitleColor() {
+        return mTitleColor;
+    }
+
+    public void setTitleColor(int titleColor) {
+        mTitleColor = titleColor;
+    }
+
+    public int getTextColor() {
+        return mTextColor;
+    }
+
+    public void setTextColor(int textColor) {
+        mTextColor = textColor;
+    }
+
+    public int getOtherColor() {
+        return mOtherColor;
+    }
+
+    public void setOtherColor(int otherColor) {
+        mOtherColor = otherColor;
     }
 
     public View.OnClickListener getClickListener(){
