@@ -19,24 +19,19 @@ import com.walton.cob.settingviewlibrary.DialogAdapter;
 import com.walton.cob.settingviewlibrary.DialogItem;
 import com.walton.cob.settingviewlibrary.NoClickListener;
 import com.walton.cob.settingviewlibrary.ShowAnotherItem;
+import com.walton.cob.settingviewlibrary.RadioListener;
 import com.walton.cob.settingviewlibrary.UpdateText;
 import com.walton.cob.settingviewlibrary.YesClickListener;
 import com.walton.cob.settingviewlibrary.SettingItem;
 import com.walton.cob.settingviewlibrary.SettingAdapter;
-import com.walton.cob.settingviewlibrary.RadioListener;
 import com.walton.cob.settingviewlibrary.MultiChoiceListener;
 import com.walton.cob.settingviewlibrary.ConfirmListener;
 
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.RadioGroup;
-
-import org.apache.regexp.REDebugCompiler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -186,18 +181,35 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem7);
 
 
+        /* KeepDay*/
+        List<String> listDialogText = new ArrayList<>();
+        listDialogText.add("5 days");
+        listDialogText.add("10 days");
+        listDialogText.add("20 days");
+        listDialogText.add("30 days");
+
         SettingItem settingItem8 = new SettingItem("Keep Day",map.get("keyDefault"));
-        String[] items = new String[]{"5 Days","10 Days","20 Days","30 Days"};
-        RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,map,"Keep Day",items);
+
+        RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,map,"Keep Day");
+        radioListener.setList(listDialogText);
+        radioListener.setColor(R.style.AlertDialog);
+        radioListener.setClickListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
         settingItem8.setClickListener(radioListener);
         list.add(settingItem8);
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
         SettingItem settingItem9 = new SettingItem(map.get("keyLegal"));
         list.add(settingItem9);
 
 
-        /* Invite Code Manage*//* Invite Code Manage*/
+        /* Invite Code Manage*/
         List<DialogItem> listDialog = new ArrayList<>();
 
         DialogItem dialogItem = new DialogItem("Title1","Text1","X1");
@@ -211,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
 
         SettingItem settingItem10 = new SettingItem(map.get("keyInvite"));
         final MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
+        multiChoiceListener.setColor(R.style.AlertDialog);
         multiChoiceListener.setAdapter(new DialogAdapter(listDialog,MainActivity.this));
         multiChoiceListener.setClickListener(new DialogInterface.OnClickListener() {
             @Override
@@ -263,15 +276,7 @@ public class MainActivity extends AppCompatActivity {
 
         lvSetting.setAdapter(settingAdapter);
 
-
-
-
-
-        System.out.println(Integer.parseInt(map.get("keyRadio")));
-
-
     }
 
 
 }
-

@@ -1,7 +1,9 @@
 package com.walton.cob.settingviewlibrary;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.View;
+import android.widget.RadioButton;
 
 import java.util.ArrayList;
 
@@ -10,21 +12,40 @@ public class DialogItem {
 
     private SettingItem mItem;
     private String mDialogOther;
-    private String[] mItems;
+    private String mItems;
     private int mBackgroundColor;
     private int mTitleColor;
     private int mTextColor;
     private int mOtherColor;
+    private int mRadioTextColor;
+
+    private boolean mShowTextView;
+    private boolean mShowRadioButton;
+
+    private View.OnClickListener mListener;
 
 
     public DialogItem(String title, String text, String other) {
         SettingItem settingItem = new SettingItem(title,text);
         mItem = settingItem;
         mDialogOther = other;
+        mShowTextView = true;
+        mShowRadioButton = false;
+
+        mTitleColor = Color.WHITE;
+        mTextColor = Color.WHITE;
+        mOtherColor = Color.WHITE;
     }
 
-    public DialogItem(String[] items) {
+    public DialogItem(String items) {
+        SettingItem settingItem = new SettingItem(items);
+        mItem = settingItem;
         mItems = items;
+        mListener = new NoListener();
+        mShowTextView = false;
+        mShowRadioButton = true;
+
+        mRadioTextColor = Color.WHITE;
     }
 
     public String getDialogTitle() {
@@ -92,6 +113,30 @@ public class DialogItem {
         mOtherColor = otherColor;
     }
 
+    public int getRadioTextColor() {
+        return mRadioTextColor;
+    }
+
+    public void setRadioTextColor(int radioTextColor) {
+        mRadioTextColor = radioTextColor;
+    }
+
+    public boolean getRadioButtonVisibility(){
+        return mShowRadioButton;
+    }
+
+    public void setRadioButtonVisibility(boolean showRadioButton){
+        mShowRadioButton = showRadioButton;
+    }
+
+    public boolean getTextViewVisibility(){
+        return mShowTextView;
+    }
+
+    public void setTextViewVisibility(boolean showTextView){
+        mShowTextView = showTextView;
+    }
+
     public View.OnClickListener getClickListener(){
         return mItem.getClickListener();
     }
@@ -101,6 +146,10 @@ public class DialogItem {
     }
 
 
+
+    public String getItems() {
+        return mItems;
+    }
 
 
 }

@@ -33,10 +33,10 @@
         android:layout_height="wrap_content"
         android:text="@string/tvText2"
         android:id="@+id/tvTexts"
-        android:layout_below="@+id/tvText"
+        android:visibility="gone"
+        android:layout_below="@+id/checkboxs"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:visibility="gone" />
+        android:layout_alignParentStart="true" />
 
     <CheckBox
         android:layout_width="wrap_content"
