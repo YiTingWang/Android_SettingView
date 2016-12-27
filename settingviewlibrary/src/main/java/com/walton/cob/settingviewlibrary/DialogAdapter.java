@@ -45,7 +45,6 @@ public class DialogAdapter extends BaseAdapter {
         TextView dialogOtherView = (TextView) dialogView.findViewById(R.id.tvDialogOther);
         CheckBox dialogCheckBox = (CheckBox) dialogView.findViewById(R.id.DialogCheckbox);
         RadioButton dialogRadioButton = (RadioButton) dialogView.findViewById(R.id.DialogRadioButton);
-        RelativeLayout dialogRelativeLayout = (RelativeLayout) dialogView.findViewById(R.id.rl);
 
 
         dialogView.setOnClickListener(dialogItem.getClickListener());
@@ -67,13 +66,6 @@ public class DialogAdapter extends BaseAdapter {
 
 
 
-//        RadioGroup radioGroup = new RadioGroup(mContext);
-//        dialogRelativeLayout.addView(radioGroup);
-//        RadioButton radioButton1 = new RadioButton(mContext);
-//        radioButton1.setText(dialogItem.getItems());
-//        radioGroup.addView(radioButton1);
-
-
 
         if(dialogItem.getRadioButtonVisibility()){
             dialogTitleView.setVisibility(View.GONE);
@@ -81,33 +73,6 @@ public class DialogAdapter extends BaseAdapter {
             dialogOtherView.setVisibility(View.GONE);
             dialogCheckBox.setVisibility(View.GONE);
             dialogRadioButton.setVisibility(View.VISIBLE);
-
-            //mRadioButton = new RadioButton(mContext);
-//            dialogRadioButton.setText(dialogItem.getItems());
-//            ((ViewGroup)dialogRadioButton.getParent()).removeView(dialogRadioButton);
-//            mRadioGroup.addView(dialogRadioButton);
-//            if(mRadioGroup.getParent() != null){
-//                ((ViewGroup)mRadioGroup.getParent()).removeView(mRadioGroup);
-//            }
-//
-//            parent.addView(mRadioGroup);
-
-
-
-
-
-
-//            RadioGroup radioGroup = new RadioGroup(mContext);
-//            radioGroup.setOrientation(RadioGroup.VERTICAL);
-//            //RelativeLayout.LayoutParams a = new RelativeLayout.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
-//            //radioGroup.setLayoutParams(a);
-//            dialogRelativeLayout.addView(radioGroup);
-//            RadioButton radioButton1 = new RadioButton(mContext);
-//            radioButton1.setText(dialogItem.getItems());
-//            radioGroup.addView(radioButton1);
-//            //radioGroup.removeView(dialogRelativeLayout);
-//            //dialogRelativeLayout.addView(radioGroup);
-//            //radioGroup.addView(dialogRadioButton);
         }else{
             dialogRadioButton.setVisibility(View.GONE);
         }

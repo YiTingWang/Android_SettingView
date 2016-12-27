@@ -29,6 +29,7 @@ import com.walton.cob.settingviewlibrary.ConfirmListener;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
@@ -92,9 +93,13 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }
 
+        System.out.println("mMap : "+mMap);
+
         if(mMap.isEmpty()){
             mMap = input;
+            System.out.println("mMaps : "+mMap);
         }
+
 
         final SaveSharedPreferences saveSharedPreferences = new SaveSharedPreferences(this,"temp");
         //saveSharedPreferences.execute(input);
@@ -109,19 +114,19 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem);
 
 
-        SettingItem settingItem1 = new SettingItem("Email",map.get("keyEmail"));
+        SettingItem settingItem1 = new SettingItem("Email",mMap.get("keyEmail"));
         list.add(settingItem1);
 
 
-        SettingItem settingItem2 = new SettingItem("Device ID",map.get("keyDevice ID"));
+        SettingItem settingItem2 = new SettingItem("Device ID",mMap.get("keyDevice ID"));
         list.add(settingItem2);
 
 
-        SettingItem settingItem3 = new SettingItem("Version",map.get("keyVersion"));
+        SettingItem settingItem3 = new SettingItem("Version",mMap.get("keyVersion"));
         list.add(settingItem3);
 
 
-        SettingItem settingItem4 = new SettingItem("Date",map.get("keyDate"));
+        SettingItem settingItem4 = new SettingItem("Date",mMap.get("keyDate"));
         list.add(settingItem4);
 
 
@@ -132,8 +137,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         /* Camera*/
-        final SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(map.get("BooleanHidden")),false,false,false);
-        final SettingItem settingItem6 = new SettingItem("Camera",map.get("keyStatus"),Boolean.parseBoolean(map.get("Boolean")));
+        final SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(mMap.get("BooleanHidden")),false,false,false);
+        final SettingItem settingItem6 = new SettingItem("Camera",mMap.get("keyStatus"),Boolean.parseBoolean(mMap.get("Boolean")));
         final Mission<SettingItem> mission = new ShowAnotherItem(settingItemHidden);
         final Mission<SettingItem> mission1 = new UpdateText(settingItem6.getText().substring(0,16)+"Open",settingItem6.getText().substring(0,16)+"Close");
         try {
@@ -177,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItemHidden);
 
 
-        SettingItem settingItem7 = new SettingItem(map.get("keyUsed"));
+        SettingItem settingItem7 = new SettingItem(mMap.get("keyUsed"));
         list.add(settingItem7);
 
 
@@ -188,9 +193,9 @@ public class MainActivity extends AppCompatActivity {
         listDialogText.add("20 days");
         listDialogText.add("30 days");
 
-        SettingItem settingItem8 = new SettingItem("Keep Day",map.get("keyDefault"));
+        SettingItem settingItem8 = new SettingItem("Keep Day",mMap.get("keyDefault"));
 
-        RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,map,"Keep Day");
+        RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,mMap,"Keep Day");
         radioListener.setList(listDialogText);
         radioListener.setColor(R.style.AlertDialog);
         radioListener.setClickListener(new DialogInterface.OnClickListener() {
@@ -202,17 +207,16 @@ public class MainActivity extends AppCompatActivity {
 
         settingItem8.setClickListener(radioListener);
         list.add(settingItem8);
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-        SettingItem settingItem9 = new SettingItem(map.get("keyLegal"));
+        SettingItem settingItem9 = new SettingItem(mMap.get("keyLegal"));
         list.add(settingItem9);
 
 
         /* Invite Code Manage*/
-        List<DialogItem> listDialog = new ArrayList<>();
+        final List<DialogItem> listDialog = new ArrayList<>();
 
-        DialogItem dialogItem = new DialogItem("Title1","Text1","X1");
+        final DialogItem dialogItem = new DialogItem("Title1","Text1","X1");
         listDialog.add(dialogItem);
 
         DialogItem dialogItem1 = new DialogItem("Title2","Text2","X2");
@@ -221,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
         DialogItem dialogItem2 = new DialogItem("Title3","Text3","X3");
         listDialog.add(dialogItem2);
 
-        SettingItem settingItem10 = new SettingItem(map.get("keyInvite"));
+        final SettingItem settingItem10 = new SettingItem(mMap.get("keyInvite"));
         final MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
         multiChoiceListener.setColor(R.style.AlertDialog);
         multiChoiceListener.setAdapter(new DialogAdapter(listDialog,MainActivity.this));
@@ -253,8 +257,9 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem10);
 
 
-        SettingItem settingItem11 = new SettingItem("Erase",map.get("keyEraseAll"));
-        ConfirmListener confirmListener = new ConfirmListener(MainActivity.this,"Erase",map.get("keyEraseAll"));
+        SettingItem settingItem11 = new SettingItem("Erase",mMap.get("keyEraseAll"));
+        ConfirmListener confirmListener = new ConfirmListener(MainActivity.this,"Erase",mMap.get("keyEraseAll"));
+        confirmListener.setColor(R.style.AlertDialog);
         YesClickListener yesClickListener = new YesClickListener();
         confirmListener.setYesListener(yesClickListener);
         NoClickListener noClickListener = new NoClickListener();
@@ -264,7 +269,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         SettingItem settingItem12 = new SettingItem("Sing out");
-        ConfirmListener confirmListener1 = new ConfirmListener(MainActivity.this,"Sing out",map.get("keyLogout"));
+        ConfirmListener confirmListener1 = new ConfirmListener(MainActivity.this,"Sing out",mMap.get("keyLogout"));
+        confirmListener1.setColor(R.style.AlertDialog);
+        confirmListener1.setColor(R.style.AlertDialog);
         YesClickListener yesClickListener1 = new YesClickListener();
         confirmListener1.setYesListener(yesClickListener1);
         NoClickListener noClickListener1 = new NoClickListener();

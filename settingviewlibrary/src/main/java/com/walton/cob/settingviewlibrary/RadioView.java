@@ -29,11 +29,13 @@ public class RadioView extends LinearLayout{
         RadioGroup radioGroup = new RadioGroup(mContext);
         mRadioGroup = radioGroup;
 
-        for(int i=0; i<list.size(); i++){
+        for(int i=0; i<mList.size(); i++){
             RadioButton radioButton = new RadioButton(mContext);
             radioButton.setText(mList.get(i));
+            radioButton.setPadding(20,20,20,20);
             mRadioGroup.addView(radioButton);
         }
+
 
         addView(mRadioGroup);
 
@@ -41,7 +43,7 @@ public class RadioView extends LinearLayout{
 
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec,heightMeasureSpec);
-        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),MeasureSpec.getSize(1000));
+        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),MeasureSpec.getSize(mRadioGroup.getHeight()));
         //setBackgroundColor(Color.RED);
     }
 
