@@ -26,7 +26,7 @@ public class MultiChoiceListener implements View.OnClickListener {
     private DialogInterface.OnClickListener mNegativeListener;
     private String mNeutralText;
     private DialogInterface.OnClickListener mNeutralListener;
-    private int mColor;
+    private static int mColor;
 
 
 
@@ -61,7 +61,7 @@ public class MultiChoiceListener implements View.OnClickListener {
         return mColor;
     }
 
-    public void setColor(int color) {
+    public static void setColor(int color) {
         mColor = color;
     }
 

@@ -3,6 +3,7 @@ package com.walton.cob.settingviewlibrary;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.BaseAdapter;
 
@@ -16,13 +17,21 @@ public class RadioListener implements View.OnClickListener {
 
     private Context mMainActivity;
     private DialogInterface.OnClickListener mListener;
+    private View.OnClickListener mViewListener;
+    private String mPositiveText;
+    private DialogInterface.OnClickListener mPositiveListener;
+    private String mNegativeText;
+    private DialogInterface.OnClickListener mNegativeListener;
+    private String mNeutralText;
+    private DialogInterface.OnClickListener mNeutralListener;
     private List<String> mList;
 
-    private int mColor;
+    private static int mColor;
     private String mTitle;
 
     private SaveSharedPreferences mSaveSharedPreferences;
     private Map<String, String> mMap;
+
 
 
     public RadioListener(Context activity, SaveSharedPreferences save, Map<String, String> map, String title) {
@@ -40,27 +49,51 @@ public class RadioListener implements View.OnClickListener {
         mListener = listener;
     }
 
+    public void setViewClickListener(View.OnClickListener viewListener) {
+        mViewListener = viewListener;
+    }
+
+    public void setPositiveButton(String text, DialogInterface.OnClickListener listener) {
+        mPositiveText = text;
+        mPositiveListener = listener;
+    }
+
+    public void setNegativeButton(String text, DialogInterface.OnClickListener listener) {
+        mNegativeText = text;
+        mNegativeListener = listener;
+    }
+
+    public void setNeutralButton(String text, DialogInterface.OnClickListener listener) {
+        mNeutralText = text;
+        mNeutralListener = listener;
+    }
+
     public int getColor() {
         return mColor;
     }
 
-    public void setColor(int color) {
+    public static void setColor(int color) {
         mColor = color;
     }
 
     public void onClick(View v) {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mColor);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mColor);
 
-        RadioView radioView = new RadioView(mMainActivity,mList);
+        ViewListener viewListener = new ViewListener();
+        final RadioView radioView = new RadioView(mMainActivity,mList,mSaveSharedPreferences,mMap,viewListener);
         builder.setView(radioView);
+
+
+
 
 
         //builder.setAdapter(mAdapter,mListener);
         builder.setTitle(mTitle);
+        builder.setPositiveButton(mPositiveText,mPositiveListener);
+        builder.setNegativeButton(mNegativeText,mNegativeListener);
+        builder.setNeutralButton(mNeutralText,mNeutralListener);
 
-
-        builder.setNegativeButton("取消",null);
 
         builder.create().show();
 

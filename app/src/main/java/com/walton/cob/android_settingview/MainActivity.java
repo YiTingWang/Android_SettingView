@@ -18,15 +18,19 @@ package com.walton.cob.android_settingview;
 import com.walton.cob.settingviewlibrary.DialogAdapter;
 import com.walton.cob.settingviewlibrary.DialogItem;
 import com.walton.cob.settingviewlibrary.NoClickListener;
+import com.walton.cob.settingviewlibrary.RadioView;
 import com.walton.cob.settingviewlibrary.ShowAnotherItem;
 import com.walton.cob.settingviewlibrary.RadioListener;
 import com.walton.cob.settingviewlibrary.UpdateText;
+import com.walton.cob.settingviewlibrary.Utils2;
+import com.walton.cob.settingviewlibrary.ViewListener;
 import com.walton.cob.settingviewlibrary.YesClickListener;
 import com.walton.cob.settingviewlibrary.SettingItem;
 import com.walton.cob.settingviewlibrary.SettingAdapter;
 import com.walton.cob.settingviewlibrary.MultiChoiceListener;
 import com.walton.cob.settingviewlibrary.ConfirmListener;
 
+import android.app.Application;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -53,7 +57,37 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+        //Utils2.onActivityCreateSetTheme(MainActivity.this);
+        switch (1) {
+            case 0:
+                setTheme(R.style.AppTheme);
+                RadioListener.setColor(R.style.AlertDialog);
+                MultiChoiceListener.setColor(R.style.AlertDialog);
+                ConfirmListener.setColor(R.style.AlertDialog);
+                break;
+            case 1:
+                setTheme(R.style.AppTheme2);
+                RadioListener.setColor(R.style.AlertDialog2);
+                MultiChoiceListener.setColor(R.style.AlertDialog2);
+                ConfirmListener.setColor(R.style.AlertDialog2);
+                break;
+        }
+//        setTheme(R.style.AppTheme);
         setContentView(R.layout.activity_main);
+        //Utils2.changeToTheme(MainActivity.this, R.style.AppTheme);
+
+
+
+
+
+        //setTheme(R.style.AppTheme);
+        //getApplication().setTheme(R.style.AppTheme);
+        //getApplicationContext().setTheme(R.style.AppTheme);
+        //System.out.println(getApplication().getTheme());
+
+
 
 
 
@@ -83,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         LoadSharedPreferences loadSharedPreferences = new LoadSharedPreferences(this,"temp");
         Map<String, String> map = loadSharedPreferences.execute("");
         mMap = map;
@@ -93,11 +128,8 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        }
 
-        System.out.println("mMap : "+mMap);
-
         if(mMap.isEmpty()){
             mMap = input;
-            System.out.println("mMaps : "+mMap);
         }
 
 
@@ -195,10 +227,30 @@ public class MainActivity extends AppCompatActivity {
 
         SettingItem settingItem8 = new SettingItem("Keep Day",mMap.get("keyDefault"));
 
-        RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,mMap,"Keep Day");
+        final RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,mMap,"Keep Day");
+
+
         radioListener.setList(listDialogText);
-        radioListener.setColor(R.style.AlertDialog);
+        //radioListener.setColor(R.style.AlertDialog2);
         radioListener.setClickListener(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        radioListener.setPositiveButton("確認", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        radioListener.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        radioListener.setNeutralButton("其他", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -227,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
 
         final SettingItem settingItem10 = new SettingItem(mMap.get("keyInvite"));
         final MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
-        multiChoiceListener.setColor(R.style.AlertDialog);
+        //multiChoiceListener.setColor(R.style.AlertDialog2);
         multiChoiceListener.setAdapter(new DialogAdapter(listDialog,MainActivity.this));
         multiChoiceListener.setClickListener(new DialogInterface.OnClickListener() {
             @Override
@@ -259,7 +311,7 @@ public class MainActivity extends AppCompatActivity {
 
         SettingItem settingItem11 = new SettingItem("Erase",mMap.get("keyEraseAll"));
         ConfirmListener confirmListener = new ConfirmListener(MainActivity.this,"Erase",mMap.get("keyEraseAll"));
-        confirmListener.setColor(R.style.AlertDialog);
+        //confirmListener.setColor(R.style.AlertDialog2);
         YesClickListener yesClickListener = new YesClickListener();
         confirmListener.setYesListener(yesClickListener);
         NoClickListener noClickListener = new NoClickListener();
@@ -270,8 +322,7 @@ public class MainActivity extends AppCompatActivity {
 
         SettingItem settingItem12 = new SettingItem("Sing out");
         ConfirmListener confirmListener1 = new ConfirmListener(MainActivity.this,"Sing out",mMap.get("keyLogout"));
-        confirmListener1.setColor(R.style.AlertDialog);
-        confirmListener1.setColor(R.style.AlertDialog);
+        //confirmListener1.setColor(R.style.AlertDialog2);
         YesClickListener yesClickListener1 = new YesClickListener();
         confirmListener1.setYesListener(yesClickListener1);
         NoClickListener noClickListener1 = new NoClickListener();

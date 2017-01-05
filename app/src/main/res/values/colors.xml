@@ -6,6 +6,8 @@
     <color name="colorWindowBackground">	#FF444444</color>
     <color name="colorAccent">#7fffd4</color>
 
+    <color name="colorWindowBackgrounds">#ffe4e1</color>
+
     <!--#FFFFFFFF-->
 
     <!--<color name="titleColor">#FFFF0000</color>-->

@@ -20,7 +20,7 @@ public class ConfirmListener implements View.OnClickListener {
     private String mMessage;
     private DialogInterface.OnClickListener mYesListener;
     private DialogInterface.OnClickListener mNoListener;
-    private int mColor;
+    private static int mColor;
 
 
     public ConfirmListener(Context activity, String title, String message) {
@@ -57,7 +57,7 @@ public class ConfirmListener implements View.OnClickListener {
         return mColor;
     }
 
-    public void setColor(int color) {
+    public static void setColor(int color) {
         mColor = color;
     }
 
