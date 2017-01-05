@@ -22,7 +22,6 @@ import com.walton.cob.settingviewlibrary.RadioView;
 import com.walton.cob.settingviewlibrary.ShowAnotherItem;
 import com.walton.cob.settingviewlibrary.RadioListener;
 import com.walton.cob.settingviewlibrary.UpdateText;
-import com.walton.cob.settingviewlibrary.Utils2;
 import com.walton.cob.settingviewlibrary.ViewListener;
 import com.walton.cob.settingviewlibrary.YesClickListener;
 import com.walton.cob.settingviewlibrary.SettingItem;
