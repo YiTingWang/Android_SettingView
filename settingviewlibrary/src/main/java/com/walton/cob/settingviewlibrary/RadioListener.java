@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.BaseAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import java.util.List;
 import java.util.Map;
@@ -80,10 +82,17 @@ public class RadioListener implements View.OnClickListener {
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mColor);
 
-        ViewListener viewListener = new ViewListener();
-        final RadioView radioView = new RadioView(mMainActivity,mList,mSaveSharedPreferences,mMap,viewListener);
-        builder.setView(radioView);
 
+
+        final RadioView radioView = new RadioView(mMainActivity,mList);
+        ViewListener viewListener = new ViewListener(mSaveSharedPreferences,mMap,radioView);
+        radioView.setListener(viewListener);
+        radioView.setIndex(Integer.parseInt(mMap.get("keyRadio")));
+
+
+
+
+        builder.setView(radioView);
 
 
 

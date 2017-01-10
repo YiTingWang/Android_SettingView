@@ -45,7 +45,7 @@ import java.util.List;
 import poisondog.core.Mission;
 import poisondog.android.preference.SaveSharedPreferences;
 import poisondog.android.preference.LoadSharedPreferences;
-//import poisondog.log.LogLevel;
+
 
 
 
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Load();
 
-        //Utils2.onActivityCreateSetTheme(MainActivity.this);
         switch (1) {
             case 0:
                 setTheme(R.style.AppTheme);
@@ -73,9 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 ConfirmListener.setColor(R.style.AlertDialog2);
                 break;
         }
-//        setTheme(R.style.AppTheme);
+
         setContentView(R.layout.activity_main);
-        //Utils2.changeToTheme(MainActivity.this, R.style.AppTheme);
 
 
 
@@ -95,41 +94,6 @@ public class MainActivity extends AppCompatActivity {
         final SettingAdapter settingAdapter = new SettingAdapter(list,this);
 
 
-
-        Map<String, String> input = new HashMap<String,String>();
-
-        input.put("keyEmail","box02@walton.com.tw");
-        input.put("keyDevice ID","WAS-14-0002");
-        input.put("keyVersion","2.4.6");
-        input.put("keyDate","2016-09-20 " + "09:11:20");
-        input.put("keyStatus","Current Status:  ");
-        input.put("Boolean",Boolean.toString(false));
-        input.put("BooleanHidden",Boolean.toString(false));
-        input.put("keyUsed","Used Disk Space");
-        input.put("keyDefault","Default keep days");
-        input.put("keyLegal","Legal and Privacy");
-        input.put("keyInvite","Invite Code Manage");
-        input.put("keyEraseAll","Erase all offline file");
-        input.put("keyLogout","Ready to logout?");
-        input.put("keyRadio",Integer.toString(-1));
-
-
-
-
-
-        LoadSharedPreferences loadSharedPreferences = new LoadSharedPreferences(this,"temp");
-        Map<String, String> map = loadSharedPreferences.execute("");
-        mMap = map;
-
-//        for (String key : input.keySet()) {
-//            if(map.get(key) == null) {
-//                map.put(key,input.get(key));
-//            }
-//        }
-
-        if(mMap.isEmpty()){
-            mMap = input;
-        }
 
 
         final SaveSharedPreferences saveSharedPreferences = new SaveSharedPreferences(this,"temp");
@@ -336,4 +300,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+    public void Load() {
+
+        Map<String, String> input = new HashMap<String,String>();
+
+        input.put("keyEmail","box02@walton.com.tw");
+        input.put("keyDevice ID","WAS-14-0002");
+        input.put("keyVersion","2.4.6");
+        input.put("keyDate","2016-09-20 " + "09:11:20");
+        input.put("keyStatus","Current Status:  ");
+        input.put("Boolean",Boolean.toString(false));
+        input.put("BooleanHidden",Boolean.toString(false));
+        input.put("keyUsed","Used Disk Space");
+        input.put("keyDefault","Default keep days");
+        input.put("keyLegal","Legal and Privacy");
+        input.put("keyInvite","Invite Code Manage");
+        input.put("keyEraseAll","Erase all offline file");
+        input.put("keyLogout","Ready to logout?");
+        input.put("keyRadio",Integer.toString(-1));
+
+
+
+        LoadSharedPreferences loadSharedPreferences = new LoadSharedPreferences(this,"temp");
+        Map<String, String> map = loadSharedPreferences.execute("");
+        mMap = map;
+
+//        for (String key : input.keySet()) {
+//            if(map.get(key) == null) {
+//                map.put(key,input.get(key));
+//            }
+//        }
+
+        if(mMap.isEmpty()){
+            mMap = input;
+        }
+    }
+
+
 }
+
+

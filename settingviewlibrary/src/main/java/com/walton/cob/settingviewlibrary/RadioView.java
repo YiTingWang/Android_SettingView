@@ -22,46 +22,39 @@ public class RadioView extends LinearLayout {
 
     private Context mContext;
     private RadioGroup mRadioGroup;
-    private List<String> mList;
-    private OnClickListener mListener;
-
-    private SaveSharedPreferences mSaveSharedPreferences;
-    private Map<String, String> mMap;
+    private List<RadioButton> mList;
+    private int mIndex;
 
 
-    public RadioView(Context context, List<String> list, SaveSharedPreferences save, Map<String, String> map, OnClickListener listener) {
+    public RadioView(Context context, List<String> list) {
         super(context);
         mContext = context;
-        mList = list;
-        mSaveSharedPreferences = save;
-        mMap = map;
-        mListener = listener;
 
+
+        List<RadioButton> radioList = new ArrayList<>();
+        mList = radioList;
 
 
         RadioGroup radioGroup = new RadioGroup(mContext);
         mRadioGroup = radioGroup;
-        //mRadioGroup.setOnClickListener(mListener);
 
-        for(int i=0; i<mList.size(); i++){
+
+        for(int i=0; i<list.size(); i++) {
             RadioButton radioButton = new RadioButton(mContext);
-            radioButton.setId(i);
-            radioButton.setText(mList.get(i));
+            radioButton.setText(list.get(i));
             radioButton.setPadding(20,20,20,20);
-            radioButton.setOnClickListener(mListener);
+            mList.add(radioButton);
             mRadioGroup.addView(radioButton);
-            //ViewListener.setId(i);
-            //ViewListener.setId(radioButton.getId());
         }
 
-        ViewListener.setId(mRadioGroup.getId());
 
-        //mRadioGroup.setOnClickListener(mListener);
-        System.out.println("RadioDialog - Touched");
+//        if(Integer.parseInt(mMap.get("keyRadio")) == -1){
+//            System.out.println("-1");
+//        }else{
+//            mList.get(Integer.parseInt(mMap.get("keyRadio"))).setChecked(true);
+//        }
 
 
-//        mMap.put("keyRadio",Integer.toString(mRadioGroup.getCheckedRadioButtonId()));
-//        mSaveSharedPreferences.execute(mMap);
 
 
         addView(mRadioGroup);
@@ -69,13 +62,33 @@ public class RadioView extends LinearLayout {
     }
 
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+        super.onMeasure(widthMeasureSpec,mRadioGroup.getHeight());
         setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),MeasureSpec.getSize(mRadioGroup.getHeight()));
         //setBackgroundColor(Color.RED);
     }
 
-    public int getId() {
-        return mRadioGroup.getCheckedRadioButtonId();
+    public void setListener(OnClickListener listener) {
+        for(int i=0; i<mList.size();i++){
+            mList.get(i).setOnClickListener(listener);
+        }
+    }
+
+    public void setIndex(int index) {
+        mIndex = index;
+        mList.get(mIndex).setChecked(true);
+    }
+
+    public int getIndex() {
+        for(int i=0; i<mList.size(); i++) {
+            if(mList.get(i).isChecked()) {
+                mIndex = i;
+            }
+        }
+        return mIndex;
+    }
+
+    public List<RadioButton> getList() {
+        return mList;
     }
 
 
