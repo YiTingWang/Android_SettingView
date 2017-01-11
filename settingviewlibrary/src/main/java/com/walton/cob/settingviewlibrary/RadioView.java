@@ -3,6 +3,7 @@ package com.walton.cob.settingviewlibrary;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -48,15 +49,6 @@ public class RadioView extends LinearLayout {
         }
 
 
-//        if(Integer.parseInt(mMap.get("keyRadio")) == -1){
-//            System.out.println("-1");
-//        }else{
-//            mList.get(Integer.parseInt(mMap.get("keyRadio"))).setChecked(true);
-//        }
-
-
-
-
         addView(mRadioGroup);
 
     }
@@ -75,7 +67,13 @@ public class RadioView extends LinearLayout {
 
     public void setIndex(int index) {
         mIndex = index;
-        mList.get(mIndex).setChecked(true);
+
+        if(mIndex == -1){
+            System.out.println("Index : -1");
+        }else{
+            mList.get(mIndex).setChecked(true);
+        }
+
     }
 
     public int getIndex() {

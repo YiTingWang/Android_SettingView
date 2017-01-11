@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.provider.Settings;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -34,17 +35,24 @@ public class RadioListener implements View.OnClickListener {
     private SaveSharedPreferences mSaveSharedPreferences;
     private Map<String, String> mMap;
 
+    private RadioView mRadioView;
+    private AlertDialog.Builder mBuild;
 
 
-    public RadioListener(Context activity, SaveSharedPreferences save, Map<String, String> map, String title) {
+
+
+
+    public RadioListener(Context activity, SaveSharedPreferences save, Map<String, String> map, String title,List<String> list) {
         mMainActivity = activity;
         mSaveSharedPreferences = save;
         mMap = map;
         mTitle = title;
-    }
-
-    public void setList(List<String> list) {
         mList = list;
+
+        mBuild = new AlertDialog.Builder(mMainActivity,mColor);
+        mRadioView = new RadioView(mMainActivity,mList);
+        mBuild.setView(mRadioView);
+
     }
 
     public void setClickListener(DialogInterface.OnClickListener listener) {
@@ -78,33 +86,35 @@ public class RadioListener implements View.OnClickListener {
         mColor = color;
     }
 
+    public RadioView getRadioView() {
+        return mRadioView;
+    }
+
     public void onClick(View v) {
 
-        final AlertDialog.Builder builder = new AlertDialog.Builder(mMainActivity,mColor);
-
-
-
-        final RadioView radioView = new RadioView(mMainActivity,mList);
-        ViewListener viewListener = new ViewListener(mSaveSharedPreferences,mMap,radioView);
-        radioView.setListener(viewListener);
-        radioView.setIndex(Integer.parseInt(mMap.get("keyRadio")));
-
-
-
-
-        builder.setView(radioView);
-
+        mRadioView.setListener(mViewListener);
+        mRadioView.setIndex(Integer.parseInt(mMap.get("keyRadio")));
 
 
 
         //builder.setAdapter(mAdapter,mListener);
-        builder.setTitle(mTitle);
-        builder.setPositiveButton(mPositiveText,mPositiveListener);
-        builder.setNegativeButton(mNegativeText,mNegativeListener);
-        builder.setNeutralButton(mNeutralText,mNeutralListener);
+        mBuild.setTitle(mTitle);
+        mBuild.setPositiveButton(mPositiveText,mPositiveListener);
+        mBuild.setNegativeButton(mNegativeText,mNegativeListener);
+        mBuild.setNeutralButton(mNeutralText,mNeutralListener);
 
 
-        builder.create().show();
+        AlertDialog alertDialog = mBuild.create();
+
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                ((ViewGroup)mRadioView.getParent()).removeView(mRadioView);
+            }
+        });
+
+        alertDialog.show();
+
 
     }
 

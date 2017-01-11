@@ -190,10 +190,12 @@ public class MainActivity extends AppCompatActivity {
 
         SettingItem settingItem8 = new SettingItem("Keep Day",mMap.get("keyDefault"));
 
-        final RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,mMap,"Keep Day");
+        final RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,mMap,"Keep Day",listDialogText);
+
+        ViewListener viewListener = new ViewListener(MainActivity.this,saveSharedPreferences,mMap,radioListener.getRadioView());
+        radioListener.setViewClickListener(viewListener);
 
 
-        radioListener.setList(listDialogText);
         //radioListener.setColor(R.style.AlertDialog2);
         radioListener.setClickListener(new DialogInterface.OnClickListener() {
             @Override
