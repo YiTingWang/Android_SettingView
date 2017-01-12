@@ -194,22 +194,18 @@ public class MainActivity extends AppCompatActivity {
         listDialogText.add("20 days");
         listDialogText.add("30 days");
 
+
         SettingItem settingItem8 = new SettingItem("Keep Day",mMap.get("keyDefault"));
 
         final RadioListener radioListener = new RadioListener(MainActivity.this,"Keep Day",listDialogText);
-	radioListener.setIndex(Integer.parseInt(mMap.get("keyRadio")));
+	    radioListener.setIndex(Integer.parseInt(mMap.get("keyRadio")));
 
         ViewListener viewListener = new ViewListener(MainActivity.this,saveSharedPreferences,mMap,radioListener.getRadioView());
         radioListener.setViewClickListener(viewListener);
 
 
         //radioListener.setColor(R.style.AlertDialog2);
-        radioListener.setClickListener(new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
 
-            }
-        });
         radioListener.setPositiveButton("確認", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -248,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
         DialogItem dialogItem2 = new DialogItem("Title3","Text3","X3");
         listDialog.add(dialogItem2);
+
 
         final SettingItem settingItem10 = new SettingItem(mMap.get("keyInvite"));
         final MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);

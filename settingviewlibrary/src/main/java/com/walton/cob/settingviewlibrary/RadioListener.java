@@ -11,15 +11,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import java.util.List;
-import java.util.Map;
 
-import poisondog.android.preference.SaveSharedPreferences;
 
 
 public class RadioListener implements View.OnClickListener {
 
     private Context mContext;
-    private DialogInterface.OnClickListener mListener;
     private View.OnClickListener mViewListener;
     private String mPositiveText;
     private DialogInterface.OnClickListener mPositiveListener;
@@ -44,10 +41,6 @@ public class RadioListener implements View.OnClickListener {
         mRadioView = new RadioView(mContext,mList);
         mBuild.setView(mRadioView);
 
-    }
-
-    public void setClickListener(DialogInterface.OnClickListener listener) {
-        mListener = listener;
     }
 
     public void setViewClickListener(View.OnClickListener viewListener) {

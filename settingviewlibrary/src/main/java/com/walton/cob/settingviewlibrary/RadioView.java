@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,29 +20,31 @@ import poisondog.android.preference.SaveSharedPreferences;
  * Created by 27758 on 2016/12/26.
  */
 
-public class RadioView extends LinearLayout {
+public class RadioView extends ScrollView {
 
-    private Context mContext;
     private RadioGroup mRadioGroup;
     private List<RadioButton> mList;
     private int mIndex;
 
+    private LinearLayout mLinearLayout;
+
 
     public RadioView(Context context, List<String> list) {
         super(context);
-        mContext = context;
+
+        mLinearLayout = new LinearLayout(context);
 
 
         List<RadioButton> radioList = new ArrayList<>();
         mList = radioList;
 
 
-        RadioGroup radioGroup = new RadioGroup(mContext);
+        RadioGroup radioGroup = new RadioGroup(context);
         mRadioGroup = radioGroup;
 
 
         for(int i=0; i<list.size(); i++) {
-            RadioButton radioButton = new RadioButton(mContext);
+            RadioButton radioButton = new RadioButton(context);
             radioButton.setText(list.get(i));
             radioButton.setPadding(20,20,20,20);
             mList.add(radioButton);
@@ -49,13 +52,16 @@ public class RadioView extends LinearLayout {
         }
 
 
-        addView(mRadioGroup);
+
+        mLinearLayout.addView(mRadioGroup);
+
+        addView(mLinearLayout);
 
     }
 
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec,mRadioGroup.getHeight());
-        setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),MeasureSpec.getSize(mRadioGroup.getHeight()));
+        super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+        //setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),MeasureSpec.getSize(mRadioGroup.getHeight()));
         //setBackgroundColor(Color.RED);
     }
 

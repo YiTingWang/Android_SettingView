@@ -28,7 +28,7 @@
     <style name="AlertDialog2" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">#ffe4e1</item>
         <item name="android:textColor">#db7093</item>
-        <item name="colorAccent">#ffc0cb</item>
+        <item name="colorAccent">#fec0cb</item>
     </style>
 
     <!--<style name="TitleColor">-->
