@@ -25,31 +25,23 @@ public class ViewListener implements View.OnClickListener {
 
 
 
-
     public ViewListener(Context context, SaveSharedPreferences save, Map<String, String> map, RadioView radioView) {
         mContext = context;
         mSaveSharedPreferences = save;
         mMap = map;
         mRadioView = radioView;
+
     }
 
 
     public void onClick(View v) {
-        
+
 
         mMap.put("keyRadio",Integer.toString(mRadioView.getIndex()));
         mSaveSharedPreferences.execute(mMap);
 
 
-
         System.out.println("Index :" + mRadioView.getIndex());
-        System.out.println(Integer.parseInt(mMap.get("keyRadio")));
-
-
-        mRadioView.removeView(v);
-
-
-
 
 
     }

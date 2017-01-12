@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         Load();
 
-        switch (1) {
+        switch (Integer.parseInt(mMap.get("keyRadio"))) {
             case 0:
                 setTheme(R.style.AppTheme);
                 RadioListener.setColor(R.style.AlertDialog);
@@ -71,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
                 RadioListener.setColor(R.style.AlertDialog2);
                 MultiChoiceListener.setColor(R.style.AlertDialog2);
                 ConfirmListener.setColor(R.style.AlertDialog2);
+                break;
+            default:
+                setTheme(R.style.AppTheme);
+                RadioListener.setColor(R.style.AlertDialog);
+                MultiChoiceListener.setColor(R.style.AlertDialog);
+                ConfirmListener.setColor(R.style.AlertDialog);
                 break;
         }
 
@@ -301,6 +307,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.out.println("Pause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("Stop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("Destroy");
+    }
 
 
     public void Load() {
