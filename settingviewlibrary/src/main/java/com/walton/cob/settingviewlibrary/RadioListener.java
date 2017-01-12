@@ -18,7 +18,7 @@ import poisondog.android.preference.SaveSharedPreferences;
 
 public class RadioListener implements View.OnClickListener {
 
-    private Context mMainActivity;
+    private Context mContext;
     private DialogInterface.OnClickListener mListener;
     private View.OnClickListener mViewListener;
     private String mPositiveText;
@@ -32,25 +32,16 @@ public class RadioListener implements View.OnClickListener {
     private static int mColor;
     private String mTitle;
 
-    private SaveSharedPreferences mSaveSharedPreferences;
-    private Map<String, String> mMap;
-
     private RadioView mRadioView;
     private AlertDialog.Builder mBuild;
 
-
-
-
-
-    public RadioListener(Context activity, SaveSharedPreferences save, Map<String, String> map, String title,List<String> list) {
-        mMainActivity = activity;
-        mSaveSharedPreferences = save;
-        mMap = map;
+    public RadioListener(Context activity, String title,List<String> list) {
+        mContext = activity;
         mTitle = title;
         mList = list;
 
-        mBuild = new AlertDialog.Builder(mMainActivity,mColor);
-        mRadioView = new RadioView(mMainActivity,mList);
+        mBuild = new AlertDialog.Builder(mContext,mColor);
+        mRadioView = new RadioView(mContext,mList);
         mBuild.setView(mRadioView);
 
     }
@@ -90,10 +81,14 @@ public class RadioListener implements View.OnClickListener {
         return mRadioView;
     }
 
+    public void setIndex(int index) {
+    	mRadioView.setIndex(index);
+    }
+
     public void onClick(View v) {
 
         mRadioView.setListener(mViewListener);
-        mRadioView.setIndex(Integer.parseInt(mMap.get("keyRadio")));
+//        mRadioView.setIndex(Integer.parseInt(mMap.get("keyRadio")));
 
 
 

@@ -190,7 +190,8 @@ public class MainActivity extends AppCompatActivity {
 
         SettingItem settingItem8 = new SettingItem("Keep Day",mMap.get("keyDefault"));
 
-        final RadioListener radioListener = new RadioListener(MainActivity.this,saveSharedPreferences,mMap,"Keep Day",listDialogText);
+        final RadioListener radioListener = new RadioListener(MainActivity.this,"Keep Day",listDialogText);
+	radioListener.setIndex(Integer.parseInt(mMap.get("keyRadio")));
 
         ViewListener viewListener = new ViewListener(MainActivity.this,saveSharedPreferences,mMap,radioListener.getRadioView());
         radioListener.setViewClickListener(viewListener);
