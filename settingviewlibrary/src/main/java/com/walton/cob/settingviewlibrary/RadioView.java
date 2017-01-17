@@ -26,13 +26,12 @@ public class RadioView extends ScrollView {
     private List<RadioButton> mList;
     private int mIndex;
 
-    private LinearLayout mLinearLayout;
 
 
     public RadioView(Context context, List<String> list) {
         super(context);
 
-        mLinearLayout = new LinearLayout(context);
+        LinearLayout linearLayout = new LinearLayout(context);
 
 
         List<RadioButton> radioList = new ArrayList<>();
@@ -53,9 +52,9 @@ public class RadioView extends ScrollView {
 
 
 
-        mLinearLayout.addView(mRadioGroup);
+        linearLayout.addView(mRadioGroup);
 
-        addView(mLinearLayout);
+        addView(linearLayout);
 
     }
 

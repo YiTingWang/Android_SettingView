@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Map<String, String> mMap;
 
+    private RadioListener mRadioListener;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
         Load();
 
         switch (Integer.parseInt(mMap.get("keyRadio"))) {
+//            case -1:
+//                setTheme(R.style.AppTheme2);
+//                RadioListener.setColor(R.style.AlertDialog2);
+//                MultiChoiceListener.setColor(R.style.AlertDialog2);
+//                ConfirmListener.setColor(R.style.AlertDialog2);
+//                break;
             case 0:
                 setTheme(R.style.AppTheme);
                 RadioListener.setColor(R.style.AlertDialog);
@@ -200,8 +208,13 @@ public class MainActivity extends AppCompatActivity {
         final RadioListener radioListener = new RadioListener(MainActivity.this,"Keep Day",listDialogText);
 	    radioListener.setIndex(Integer.parseInt(mMap.get("keyRadio")));
 
-        ViewListener viewListener = new ViewListener(MainActivity.this,saveSharedPreferences,mMap,radioListener.getRadioView());
-        radioListener.setViewClickListener(viewListener);
+        View.OnClickListener listener = new Listener(MainActivity.this,saveSharedPreferences,mMap,radioListener.getRadioView(),settingAdapter);
+
+//        ViewListener viewListener = new ViewListener(MainActivity.this,saveSharedPreferences,mMap,radioListener.getRadioView());
+
+        radioListener.setViewClickListener(listener);
+
+        mRadioListener = radioListener;
 
 
         //radioListener.setColor(R.style.AlertDialog2);
@@ -303,8 +316,23 @@ public class MainActivity extends AppCompatActivity {
 
         lvSetting.setAdapter(settingAdapter);
 
+        System.out.println("Create");
+
     }
 
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("Start");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("Resume");
+    }
 
     @Override
     protected void onPause() {
@@ -321,8 +349,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mRadioListener.getAlertDialog().dismiss();
         System.out.println("Destroy");
     }
+
 
 
     public void Load() {

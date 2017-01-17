@@ -32,6 +32,10 @@ public class RadioListener implements View.OnClickListener {
     private RadioView mRadioView;
     private AlertDialog.Builder mBuild;
 
+
+    private AlertDialog mTest;
+
+
     public RadioListener(Context activity, String title,List<String> list) {
         mContext = activity;
         mTitle = title;
@@ -78,6 +82,8 @@ public class RadioListener implements View.OnClickListener {
     	mRadioView.setIndex(index);
     }
 
+    public AlertDialog getAlertDialog(){return mTest;}
+
     public void onClick(View v) {
 
         mRadioView.setListener(mViewListener);
@@ -101,6 +107,8 @@ public class RadioListener implements View.OnClickListener {
                 ((ViewGroup)mRadioView.getParent()).removeView(mRadioView);
             }
         });
+
+        mTest = alertDialog;
 
         alertDialog.show();
 
