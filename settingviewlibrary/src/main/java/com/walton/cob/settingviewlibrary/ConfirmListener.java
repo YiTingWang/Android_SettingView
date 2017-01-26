@@ -3,13 +3,8 @@ package com.walton.cob.settingviewlibrary;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.preference.CheckBoxPreference;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import poisondog.core.Mission;
-import poisondog.core.NoMission;
 
 
 public class ConfirmListener implements View.OnClickListener {

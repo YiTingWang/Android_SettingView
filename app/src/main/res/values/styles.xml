@@ -8,6 +8,7 @@
         <item name="android:textColor">@color/colorText</item>
         <item name="android:windowBackground">@color/colorWindowBackground</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme2" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -15,20 +16,57 @@
         <item name="colorPrimary">#ff6347</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:textColor">#db7093</item>
-        <item name="android:windowBackground">@color/colorWindowBackgrounds</item>
+        <item name="android:windowBackground">@color/colorWindowBackground2</item>
         <item name="colorAccent">#ffc0cb</item>
+        <item name="android:colorAccent">#ffc0cb</item>
+    </style>
+
+    <style name="AppTheme3" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#800080</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColor">#BA55D3</item>
+        <item name="android:windowBackground">@color/colorWindowBackground3</item>
+        <item name="colorAccent">#D8BFD8</item>
+        <item name="android:colorAccent">#D8BFD8</item>
+    </style>
+
+    <style name="AppTheme4" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#006400</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColor">#228B22</item>
+        <item name="android:windowBackground">@color/colorWindowBackground4</item>
+        <item name="colorAccent">#adff2f</item>
+        <item name="android:colorAccent">#adff2f</item>
     </style>
 
     <style name="AlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">#696969</item>
         <item name="android:textColor">#FFFFFFFF</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AlertDialog2" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">#ffe4e1</item>
         <item name="android:textColor">#db7093</item>
         <item name="colorAccent">#ffc0cb</item>
+        <item name="android:colorAccent">#ffc0cb</item>
+    </style>
+
+    <style name="AlertDialog3" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/colorWindowBackground3</item>
+        <item name="android:textColor">#BA55D3</item>
+        <item name="colorAccent">#D8BFD8</item>
+        <item name="android:colorAccent">#D8BFD8</item>
+    </style>
+
+    <style name="AlertDialog4" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/colorWindowBackground4</item>
+        <item name="android:textColor">#228B22</item>
+        <item name="colorAccent">#adff2f</item>
+        <item name="android:colorAccent">#adff2f</item>
     </style>
 
     <!--<style name="TitleColor">-->

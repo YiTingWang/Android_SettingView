@@ -3,12 +3,9 @@ package com.walton.cob.settingviewlibrary;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.provider.Settings;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+
 
 import java.util.List;
 

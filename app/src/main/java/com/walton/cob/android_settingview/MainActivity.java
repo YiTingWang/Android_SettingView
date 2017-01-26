@@ -18,21 +18,17 @@ package com.walton.cob.android_settingview;
 import com.walton.cob.settingviewlibrary.DialogAdapter;
 import com.walton.cob.settingviewlibrary.DialogItem;
 import com.walton.cob.settingviewlibrary.NoClickListener;
-import com.walton.cob.settingviewlibrary.RadioView;
 import com.walton.cob.settingviewlibrary.ShowAnotherItem;
 import com.walton.cob.settingviewlibrary.RadioListener;
 import com.walton.cob.settingviewlibrary.UpdateText;
-import com.walton.cob.settingviewlibrary.ViewListener;
 import com.walton.cob.settingviewlibrary.YesClickListener;
 import com.walton.cob.settingviewlibrary.SettingItem;
 import com.walton.cob.settingviewlibrary.SettingAdapter;
 import com.walton.cob.settingviewlibrary.MultiChoiceListener;
 import com.walton.cob.settingviewlibrary.ConfirmListener;
 
-import android.app.Application;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
@@ -52,6 +48,7 @@ import poisondog.android.preference.LoadSharedPreferences;
 public class MainActivity extends AppCompatActivity {
 
     private Map<String, String> mMap;
+    private SaveSharedPreferences mSavaSharePreference;
 
     private RadioListener mRadioListener;
 
@@ -61,43 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
         Load();
 
-        switch (Integer.parseInt(mMap.get("keyRadio"))) {
-//            case -1:
-//                setTheme(R.style.AppTheme2);
-//                RadioListener.setColor(R.style.AlertDialog2);
-//                MultiChoiceListener.setColor(R.style.AlertDialog2);
-//                ConfirmListener.setColor(R.style.AlertDialog2);
-//                break;
-            case 0:
-                setTheme(R.style.AppTheme);
-                RadioListener.setColor(R.style.AlertDialog);
-                MultiChoiceListener.setColor(R.style.AlertDialog);
-                ConfirmListener.setColor(R.style.AlertDialog);
-                break;
-            case 1:
-                setTheme(R.style.AppTheme2);
-                RadioListener.setColor(R.style.AlertDialog2);
-                MultiChoiceListener.setColor(R.style.AlertDialog2);
-                ConfirmListener.setColor(R.style.AlertDialog2);
-                break;
-            default:
-                setTheme(R.style.AppTheme);
-                RadioListener.setColor(R.style.AlertDialog);
-                MultiChoiceListener.setColor(R.style.AlertDialog);
-                ConfirmListener.setColor(R.style.AlertDialog);
-                break;
-        }
+        setTheme(Integer.parseInt(mMap.get("keyTheme")));
+        RadioListener.setColor(Integer.parseInt(mMap.get("keyDialog")));
+        MultiChoiceListener.setColor(Integer.parseInt(mMap.get("keyDialog")));
+        ConfirmListener.setColor(Integer.parseInt(mMap.get("keyDialog")));
 
         setContentView(R.layout.activity_main);
-
-
-
-
-
-        //setTheme(R.style.AppTheme);
-        //getApplication().setTheme(R.style.AppTheme);
-        //getApplicationContext().setTheme(R.style.AppTheme);
-        //System.out.println(getApplication().getTheme());
 
 
 
@@ -111,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         final SaveSharedPreferences saveSharedPreferences = new SaveSharedPreferences(this,"temp");
-        //saveSharedPreferences.execute(input);
+        mSavaSharePreference = saveSharedPreferences;
+//        saveSharedPreferences.execute(input);
 
 
 
@@ -161,7 +128,6 @@ public class MainActivity extends AppCompatActivity {
                 settingItem6.setCheck(!settingItem6.getCheck());
 
                 mMap.put("Boolean",Boolean.toString(settingItem6.getCheck()));
-                saveSharedPreferences.execute(mMap);
 
                 try{
                     mission.execute(settingItem6);
@@ -171,7 +137,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 mMap.put("keyStatus",settingItem6.getText());
-                saveSharedPreferences.execute(mMap);
 
                 settingAdapter.notifyDataSetChanged();
             }
@@ -182,7 +147,6 @@ public class MainActivity extends AppCompatActivity {
                 settingItemHidden.setCheck(!settingItemHidden.getCheck());
 
                 mMap.put("BooleanHidden",Boolean.toString(settingItemHidden.getCheck()));
-                saveSharedPreferences.execute(mMap);
 
                 settingAdapter.notifyDataSetChanged();
             }
@@ -197,10 +161,10 @@ public class MainActivity extends AppCompatActivity {
 
         /* KeepDay*/
         List<String> listDialogText = new ArrayList<>();
-        listDialogText.add("5 days");
-        listDialogText.add("10 days");
-        listDialogText.add("20 days");
-        listDialogText.add("30 days");
+        listDialogText.add("Dark Gray");
+        listDialogText.add("Pink");
+        listDialogText.add("Purple");
+        listDialogText.add("Green");
 
 
         SettingItem settingItem8 = new SettingItem("Keep Day",mMap.get("keyDefault"));
@@ -208,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         final RadioListener radioListener = new RadioListener(MainActivity.this,"Keep Day",listDialogText);
 	    radioListener.setIndex(Integer.parseInt(mMap.get("keyRadio")));
 
-        View.OnClickListener listener = new Listener(MainActivity.this,saveSharedPreferences,mMap,radioListener.getRadioView(),settingAdapter);
+        View.OnClickListener listener = new ViewListener(MainActivity.this,mMap,radioListener.getRadioView());
 
 //        ViewListener viewListener = new ViewListener(MainActivity.this,saveSharedPreferences,mMap,radioListener.getRadioView());
 
@@ -217,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
         mRadioListener = radioListener;
 
 
-        //radioListener.setColor(R.style.AlertDialog2);
 
         radioListener.setPositiveButton("確認", new DialogInterface.OnClickListener() {
             @Override
@@ -261,7 +224,6 @@ public class MainActivity extends AppCompatActivity {
 
         final SettingItem settingItem10 = new SettingItem(mMap.get("keyInvite"));
         final MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
-        //multiChoiceListener.setColor(R.style.AlertDialog2);
         multiChoiceListener.setAdapter(new DialogAdapter(listDialog,MainActivity.this));
         multiChoiceListener.setClickListener(new DialogInterface.OnClickListener() {
             @Override
@@ -293,7 +255,6 @@ public class MainActivity extends AppCompatActivity {
 
         SettingItem settingItem11 = new SettingItem("Erase",mMap.get("keyEraseAll"));
         ConfirmListener confirmListener = new ConfirmListener(MainActivity.this,"Erase",mMap.get("keyEraseAll"));
-        //confirmListener.setColor(R.style.AlertDialog2);
         YesClickListener yesClickListener = new YesClickListener();
         confirmListener.setYesListener(yesClickListener);
         NoClickListener noClickListener = new NoClickListener();
@@ -304,7 +265,6 @@ public class MainActivity extends AppCompatActivity {
 
         SettingItem settingItem12 = new SettingItem("Sing out");
         ConfirmListener confirmListener1 = new ConfirmListener(MainActivity.this,"Sing out",mMap.get("keyLogout"));
-        //confirmListener1.setColor(R.style.AlertDialog2);
         YesClickListener yesClickListener1 = new YesClickListener();
         confirmListener1.setYesListener(yesClickListener1);
         NoClickListener noClickListener1 = new NoClickListener();
@@ -337,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        mSavaSharePreference.execute(mMap);
         System.out.println("Pause");
     }
 
@@ -349,7 +310,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mRadioListener.getAlertDialog().dismiss();
+        if(mRadioListener.getAlertDialog() != null){
+            mRadioListener.getAlertDialog().dismiss();
+        }
         System.out.println("Destroy");
     }
 
@@ -373,6 +336,8 @@ public class MainActivity extends AppCompatActivity {
         input.put("keyEraseAll","Erase all offline file");
         input.put("keyLogout","Ready to logout?");
         input.put("keyRadio",Integer.toString(-1));
+        input.put("keyTheme",Integer.toString(R.style.AppTheme));
+        input.put("keyDialog",Integer.toString(R.style.AlertDialog));
 
 
 
@@ -381,8 +346,7 @@ public class MainActivity extends AppCompatActivity {
         mMap = map;
 
 //        for (String key : input.keySet()) {
-//            if(map.get(key) == null) {
-//                map.put(key,input.get(key));
+//            if(map.get(key) == null) {g
 //            }
 //        }
 
