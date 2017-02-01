@@ -177,3 +177,126 @@ public class SettingItem {
 
 - Result:
 
+![Result](https://github.com/YiTingWang/Android_SettingView/blob/master/README_content/Result.png "Result")
+
+## Listener
+
+- Add listeners for item
+
+### Listener for CheckBox
+
+```java
+
+//...
+
+final SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(mMap.get("BooleanHidden")),false,false,false);
+        final SettingItem settingItem6 = new SettingItem("Camera",mMap.get("keyStatus"),Boolean.parseBoolean(mMap.get("Boolean")));
+        final Mission<SettingItem> mission = new ShowAnotherItem(settingItemHidden);
+        final Mission<SettingItem> mission1 = new UpdateText(settingItem6.getText().substring(0,16)+"Open",settingItem6.getText().substring(0,16)+"Close");
+        try {
+            mission.execute(settingItem6);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        settingItem6.setClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                settingItem6.setCheck(!settingItem6.getCheck());
+
+                mMap.put("Boolean",Boolean.toString(settingItem6.getCheck()));
+
+                try{
+                    mission.execute(settingItem6);
+                    mission1.execute(settingItem6);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+                mMap.put("keyStatus",settingItem6.getText());
+
+                settingAdapter.notifyDataSetChanged();
+            }
+        });
+        settingItemHidden.setClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                settingItemHidden.setCheck(!settingItemHidden.getCheck());
+
+                mMap.put("BooleanHidden",Boolean.toString(settingItemHidden.getCheck()));
+
+                settingAdapter.notifyDataSetChanged();
+            }
+        });
+        list.add(settingItem6);
+        list.add(settingItemHidden);
+        
+//...        
+
+```
+
+```java
+
+//...
+
+public class ShowAnotherItem implements Mission<SettingItem> {
+	private SettingItem mHidden;
+
+	/**
+	 * Constructor
+	 */
+	public ShowAnotherItem(SettingItem hidden) {
+		mHidden = hidden;
+	}
+
+	@Override
+	public SettingItem execute(SettingItem item) {
+		if(item.getCheck()){
+			mHidden.setTitleVisibility(true);
+			mHidden.setTextVisibility(true);
+			mHidden.setCheckVisibility(true);
+		}else{
+			mHidden.setTitleVisibility(false);
+			mHidden.setTextVisibility(false);
+			mHidden.setCheckVisibility(false);
+		}
+		return item;
+	}
+}
+
+//...
+
+```
+
+```java
+
+//...
+
+public class UpdateText implements Mission<SettingItem> {
+	private String mSelected;
+	private String mUnselected;
+
+	/**
+	 * Constructor
+	 */
+	public UpdateText(String selected, String unselected) {
+		mSelected = selected;
+		mUnselected = unselected;
+	}
+
+	@Override
+	public SettingItem execute(SettingItem item) {
+		if (item.getCheck()) {
+			item.setText(mSelected);
+		} else {
+			item.setText(mUnselected);
+		}
+		return item;
+	}
+}
+
+//...
+
+```
+
+- Example:
+
