@@ -258,7 +258,6 @@ public class MainActivity extends AppCompatActivity {
 
         lvSetting.setAdapter(settingAdapter);
 
-        System.out.println("Create");
 
     }
 
