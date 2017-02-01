@@ -69,17 +69,4 @@
         <item name="android:colorAccent">#adff2f</item>
     </style>
 
-    <!--<style name="TitleColor">-->
-        <!--<item name="titleColor">@color/titleColor</item>-->
-    <!--</style>-->
-
-    <!--<style name="TextColor">-->
-        <!--<item name="textColor">@color/textColor</item>-->
-    <!--</style>-->
-
-    <!--<style name="OtherColor">-->
-        <!--<item name="otherColor">@color/otherColor</item>-->
-    <!--</style>-->
-
-
 </resources>

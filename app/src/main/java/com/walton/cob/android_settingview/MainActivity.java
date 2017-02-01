@@ -26,22 +26,18 @@ import com.walton.cob.settingviewlibrary.SettingItem;
 import com.walton.cob.settingviewlibrary.SettingAdapter;
 import com.walton.cob.settingviewlibrary.MultiChoiceListener;
 import com.walton.cob.settingviewlibrary.ConfirmListener;
-
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
-
 import poisondog.core.Mission;
 import poisondog.android.preference.SaveSharedPreferences;
 import poisondog.android.preference.LoadSharedPreferences;
-
 
 
 
@@ -67,20 +63,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
         ListView lvSetting = (ListView) findViewById(R.id.lvSetting);
         List<SettingItem> list = new ArrayList<>();
         final SettingAdapter settingAdapter = new SettingAdapter(list,this);
 
 
 
-
         final SaveSharedPreferences saveSharedPreferences = new SaveSharedPreferences(this,"temp");
         mSavaSharePreference = saveSharedPreferences;
 //        saveSharedPreferences.execute(input);
-
-
 
 
 
@@ -112,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem5);
 
 
-        /* Camera*/
         final SettingItem settingItemHidden = new SettingItem("Only Wi-Fi Upload","",Boolean.parseBoolean(mMap.get("BooleanHidden")),false,false,false);
         final SettingItem settingItem6 = new SettingItem("Camera",mMap.get("keyStatus"),Boolean.parseBoolean(mMap.get("Boolean")));
         final Mission<SettingItem> mission = new ShowAnotherItem(settingItemHidden);
@@ -159,13 +149,11 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem7);
 
 
-        /* KeepDay*/
         List<String> listDialogText = new ArrayList<>();
         listDialogText.add("Dark Gray");
         listDialogText.add("Pink");
         listDialogText.add("Purple");
         listDialogText.add("Green");
-
 
         SettingItem settingItem8 = new SettingItem("Keep Day",mMap.get("keyDefault"));
 
@@ -174,13 +162,9 @@ public class MainActivity extends AppCompatActivity {
 
         View.OnClickListener listener = new ViewListener(MainActivity.this,mMap,radioListener.getRadioView());
 
-//        ViewListener viewListener = new ViewListener(MainActivity.this,saveSharedPreferences,mMap,radioListener.getRadioView());
-
         radioListener.setViewClickListener(listener);
 
         mRadioListener = radioListener;
-
-
 
         radioListener.setPositiveButton("確認", new DialogInterface.OnClickListener() {
             @Override
@@ -209,7 +193,6 @@ public class MainActivity extends AppCompatActivity {
         list.add(settingItem9);
 
 
-        /* Invite Code Manage*/
         final List<DialogItem> listDialog = new ArrayList<>();
 
         final DialogItem dialogItem = new DialogItem("Title1","Text1","X1");
@@ -220,7 +203,6 @@ public class MainActivity extends AppCompatActivity {
 
         DialogItem dialogItem2 = new DialogItem("Title3","Text3","X3");
         listDialog.add(dialogItem2);
-
 
         final SettingItem settingItem10 = new SettingItem(mMap.get("keyInvite"));
         final MultiChoiceListener multiChoiceListener = new MultiChoiceListener(MainActivity.this);
@@ -280,31 +262,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
     @Override
     protected void onStart() {
         super.onStart();
-        System.out.println("Start");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("Resume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mSavaSharePreference.execute(mMap);
-        System.out.println("Pause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        System.out.println("Stop");
     }
 
     @Override
@@ -313,10 +289,7 @@ public class MainActivity extends AppCompatActivity {
         if(mRadioListener.getAlertDialog() != null){
             mRadioListener.getAlertDialog().dismiss();
         }
-        System.out.println("Destroy");
     }
-
-
 
     public void Load() {
 
@@ -340,7 +313,6 @@ public class MainActivity extends AppCompatActivity {
         input.put("keyDialog",Integer.toString(R.style.AlertDialog));
 
 
-
         LoadSharedPreferences loadSharedPreferences = new LoadSharedPreferences(this,"temp");
         Map<String, String> map = loadSharedPreferences.execute("");
         mMap = map;
@@ -354,7 +326,6 @@ public class MainActivity extends AppCompatActivity {
             mMap = input;
         }
     }
-
 
 }
 

@@ -1,9 +1,21 @@
+/*
+ * Copyright (C) 2016 Yi-Ting Wang <ig95233259@gmail.com>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.walton.cob.settingviewlibrary;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -11,13 +23,8 @@ import android.widget.ScrollView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import poisondog.android.preference.SaveSharedPreferences;
 
-/**
- * Created by 27758 on 2016/12/26.
- */
 
 public class RadioView extends ScrollView {
 
@@ -26,20 +33,16 @@ public class RadioView extends ScrollView {
     private int mIndex;
 
 
-
     public RadioView(Context context, List<String> list) {
         super(context);
 
         LinearLayout linearLayout = new LinearLayout(context);
 
-
         List<RadioButton> radioList = new ArrayList<>();
         mList = radioList;
 
-
         RadioGroup radioGroup = new RadioGroup(context);
         mRadioGroup = radioGroup;
-
 
         for(int i=0; i<list.size(); i++) {
             RadioButton radioButton = new RadioButton(context);
@@ -48,8 +51,6 @@ public class RadioView extends ScrollView {
             mList.add(radioButton);
             mRadioGroup.addView(radioButton);
         }
-
-
 
         linearLayout.addView(mRadioGroup);
 
@@ -92,8 +93,5 @@ public class RadioView extends ScrollView {
     public List<RadioButton> getList() {
         return mList;
     }
-
-
-
 
 }
