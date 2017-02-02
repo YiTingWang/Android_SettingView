@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Load();
+        load();
 
         setTheme(Integer.parseInt(mMap.get("keyTheme")));
         RadioListener.setColor(Integer.parseInt(mMap.get("keyDialog")));
@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void Load() {
+    public void load() {
 
         Map<String, String> input = new HashMap<String,String>();
 
@@ -311,19 +311,13 @@ public class MainActivity extends AppCompatActivity {
         input.put("keyTheme",Integer.toString(R.style.AppTheme));
         input.put("keyDialog",Integer.toString(R.style.AlertDialog));
 
-
         LoadSharedPreferences loadSharedPreferences = new LoadSharedPreferences(this,"temp");
         Map<String, String> map = loadSharedPreferences.execute("");
-        mMap = map;
 
-//        for (String key : input.keySet()) {
-//            if(map.get(key) == null) {g
-//            }
-//        }
-
-        if(mMap.isEmpty()){
-            mMap = input;
+        for (String key : map.keySet()) {
+		input.put(key, map.get(key));
         }
+        mMap = input;
     }
 
 }
